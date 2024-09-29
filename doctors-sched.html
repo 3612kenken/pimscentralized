@@ -163,10 +163,58 @@
             
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Manage Doctors</h3>
-        <p class="text-subtitle text-muted">Here are the list of doctors</p>
+        <h3>Doctor's Schedule</h3>
+        <p class="text-subtitle text-muted">Here are the list of doctor's schedule</p>
     </div>
     <section class="section">
+									<div class="row">
+										<div class="col-md-6">
+                                            
+                                
+											<div class="form-group">
+												<label for="first-name-column">Title</label>
+												<input type="text" id="first-name-column" class="form-control" name="lname-column">
+											</div>
+											<div class="form-group">
+												<label for="first-name-column">Date Schedule</label>
+												<input type="date" id="first-name-column" class="form-control" name="lname-column">
+											</div>
+											<div class="form-group">
+												<label for="first-name-column">Description</label>
+												<input type="text" id="first-name-column" class="form-control" name="lname-column">
+											</div>
+												<a class="btn btn-success" href="">Save</a>
+										</div>
+										<div class="col-md-6">
+											<div class="table-responsive">
+												<table class='table mb-0' id="table1">
+													<thead>
+														<tr>
+															<th>#</th>
+															<th>Title</th>
+															<th>Date Schedule</th>
+															<th>Description</th>
+															<th>Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>1</td>
+															<td>Clinical</td>
+															<td>11/12/2024</td>
+															<td>Description...</td>
+															<td>
+																<button class="btn badge bg-primary"> <i class="fa fa-edit"></i></button>
+																<button class="btn badge bg-danger"> <i class="fa fa-trash"></i></button>
+															</td>
+														</tr>
+													   
+													</tbody>
+												</table>
+											</div>
+									
+										</div>
+									</div>
         <div id='wrap'>
 
 <div id='calendar'></div>
