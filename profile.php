@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Voler Admin Dashboard</title>
+    <title>Dashboard - PISYS</title>
     
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     
@@ -12,20 +12,20 @@
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
 <body>
     <div id="app">
         <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
-    <div class="sidebar-header" >
+      <div class="sidebar-header" >
         
         <p class="title text-primary">PIMS </p>
-        <h2 class="text-primary" style="font-size:large; margin:0%;padding:0%;margin-bottom: 0%;">Patient Information and Monitoring System</h2>
+        <h2 class="text-primary" style="font-size:large; margin:0%;padding:0%;margin-bottom: 0%;">Patient Information System</h2>
     </div>
     <div class="sidebar-menu">
-        <div class="sidebar-menu">
-            <ul class="menu">
+        <ul class="menu">
         
             <li class='sidebar-title'>Patient Assist Menu</li>
             <li class="sidebar-item active ">
@@ -101,20 +101,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="dropdown nav-icon mr-2">
-                            <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-                                <div class="d-lg-inline-block">
-                                    <i data-feather="mail"></i>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
-                            </div>
-                        </li>
+                       
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                                 <div class="avatar mr-1">
@@ -136,79 +123,103 @@
             
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Manage Doctors</h3>
-        <p class="text-subtitle text-muted">Here are the list of doctors</p>
+        <h3>Profile</h3>
+        <p class="text-subtitle text-muted">Update your profile</p>
     </div>
     <section class="section">
-        
         <div class="row mb-4">
-            
             <div class="col-md-12">
-              
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="card-title">List of Doctors</h4>
-                        <div class="d-flex ">
-                           
-
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
-                                    <input type="text" class="form-control" placeholder="Search Doctor" aria-label="Patient " aria-describedby="button-addon2">
-                               
-                                    <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
-                                    
-                                </div>
-                        
-                        </div>
-                    </div>
-                    <div class="card-body px-0 pb-0">
-                        <div class="table-responsive">
-                            <table class='table mb-0' id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Extension</th>
-										<th>Address</th>
-										<th>Proficiency</th>
-										<th>Clinic</th>
-										<th>Clinic Address</th>
-										<th>Manage</th>
-                                        <th>Action</th>
-                                     
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Kenneth Omiping</td>
-                                        <td>phD</td>
-										<td>Cawit Boac Marinduque</td>
-                                        <td>Doctor in Phsychology</td>
-										<td>Kenz Clinic</td>
-										<td>Mercado, Boac, Marinduque</td>
-                                        <td>
-											<button class="btn badge bg-success">Other Information</button> 
-                                           
-                                            <button class="btn badge bg-info">Manage Schedule</button> 
-                                           
-                                        </td>
-                                       
-                                        <td>
-                                            <button class="btn badge bg-primary"> <i class="fa fa-edit"></i></button>
-                                            <button class="btn badge bg-danger"> <i class="fa fa-trash"></i></button>
-                                        </td>
-                                        
-                                    </tr>
+                <div class="card ">
+                  
+                    <div class="card-body">
+                      
+                        <form action="index.html">
+                            <div class="row">
+                                <p><b>FULL NAME</b></p>
+                                <div class="col-md-4 col-12">
                                    
-                                </tbody>
-                            </table>
-                        </div>
+                                    <div class="form-group">
+                                        <label for="last-name-column">Last Name</label>
+                                        <input type="text" id="last-name-column" class="form-control"  name="fname-column">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-column">First Name</label>
+                                        <input type="text" id="first-name-column" class="form-control"  name="lname-column">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label for="middle-name-column">Middle Name</label>
+                                        <input type="text" id="middle-name-column" class="form-control"  name="mname-column">
+                                    </div>
+                                </div>
+                                
+                               
+                                
+                            </diV>
+                            <div class="row">
+								<div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label for="middle-name-column">Designation</label>
+                                        <select class="form-control" >
+											<option disabled>--Select Designation</option>
+											<option value="Doctor">Doctor</option>
+											<option value="Nurse III">Nurse III</option>
+											<option value="Staff">Staff</option>
+										</select>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-12">
+                                    <div class="form-group">
+                                        <label for="middle-name-column">Address</label>
+                                        <input type="text" id="middle-name-column" class="form-control"  name="mname-column">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                   
+                                    <div class="form-group">
+                                        <label for="last-name-column">Username</label>
+                                        <input type="text" id="last-name-column" class="form-control"  name="fname-column">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-column">Password</label>
+                                        <input type="password" id="first-name-column" class="form-control"  name="lname-column">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label for="middle-name-column">User Level</label>
+                                        <select class="form-control" >
+											<option disabled>--Select User Level</option>
+											<option value="Administrator">Administrator</option>
+											<option value="Sub Administrator">Sub Administrator</option>
+											<option value="Staff/User">Staff/User</option>
+										</select>
+                                    </div>
+                                </div>
+                               
+                               
+                                
+                            </diV>
+                             <br>
+                            <div class="clearfix">
+                                <button class="btn btn-success float-right">Update Profile</button>
+                            </div>
+                        </form>
+                        
                     </div>
                 </div>
+                
             </div>
+            
            
         </div>
-    </section>
+    
+	</section>
 </div>
 
             <footer>

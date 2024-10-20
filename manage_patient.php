@@ -24,78 +24,46 @@
         <h2 class="text-primary" style="font-size:large; margin:0%;padding:0%;margin-bottom: 0%;">Patient Information and Monitoring System</h2>
     </div>
     <div class="sidebar-menu">
-        <ul class="menu">
+       <ul class="menu">
         
-                <li class='sidebar-title'>Patient Assist Menu</li>
-                <li class="sidebar-item">
-                    <a href="dashboard_main.html" class='sidebar-link'>
-                        <i data-feather="home" width="20"></i> 
-                        <span>Dashboard</span>
-                    </a>
-                    
-                </li>
-                <li class="sidebar-item active">
-                    <a href="manage_patient.html" class='sidebar-link'>
-                        <i data-feather="layout" width="20"></i> 
-                        <span>Manage Patient</span>
-                    </a>
-                    
-                </li>
-                <li class="sidebar-item ">
-                    <a href="doctors.html" class='sidebar-link'>
-                        <i data-feather="layout" width="20"></i> 
-                        <span>Manage Doctors List</span>
-                    </a>
-                    
-                </li>
+            <li class='sidebar-title'>Patient Assist Menu</li>
+            <li class="sidebar-item active ">
+                <a href="dashboard_main.php" class='sidebar-link'>
+                    <i data-feather="home" width="20"></i> 
+                    <span>Dashboard</span>
+                </a>
+                
+            </li>
+			<li class="sidebar-item ">
+                <a href="profile.php" class='sidebar-link'>
+                    <i data-feather="layout" width="20"></i> 
+                    <span>Profile</span>
+                </a>
+                
+            </li>
+            <li class="sidebar-item ">
+                <a href="manage_patient.php" class='sidebar-link'>
+                    <i data-feather="layout" width="20"></i> 
+                    <span>Manage Patient</span>
+                </a>
+                
+            </li>
+          
 
-                <li class="sidebar-item  ">
-                    <a href="doctors-sched.html" class='sidebar-link'>
-                        <i data-feather="layout" width="20"></i> 
-                        <span>Doctor's Schedule</span>
-                    </a>
-                    
-                </li>
-
-            
-            
-            
-                <li class='sidebar-title'>Pages</li>
-            
-            
-            
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i data-feather="user" width="20"></i> 
-                        <span>Authentication</span>
-                    </a>
-                    
-                    <ul class="submenu ">
-                        
-                        <li>
-                            <a href="auth-login.html">Login</a>
-                        </li>
-                        
-                        <li>
-                            <a href="auth-register.html">Register</a>
-                        </li>
-                        
-                        <li>
-                            <a href="auth-forgot-password.html">Forgot Password</a>
-                        </li>
-                        
-                    </ul>
-                    
-                </li>
-
-            
-            
-            
-
-            
-            
-         
-        </ul>
+            <li class="sidebar-item  ">
+                <a href="doctors-sched.php" class='sidebar-link'>
+                    <i data-feather="layout" width="20"></i> 
+                    <span>Doctor's Schedule</span>
+                </a>
+                
+            </li>
+			<li class="sidebar-item  ">
+                <a href="users-maintenance.php" class='sidebar-link'>
+                    <i data-feather="layout" width="20"></i> 
+                    <span>User's Maintenance</span>
+                </a>
+            </li>
+    </ul>
     </div>
     <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 </div>

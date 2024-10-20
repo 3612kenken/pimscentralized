@@ -35,13 +35,6 @@
                 </a>
                 
             </li>
-			<li class="sidebar-item ">
-                <a href="profile.php" class='sidebar-link'>
-                    <i data-feather="layout" width="20"></i> 
-                    <span>Profile</span>
-                </a>
-                
-            </li>
             <li class="sidebar-item ">
                 <a href="manage_patient.php" class='sidebar-link'>
                     <i data-feather="layout" width="20"></i> 
@@ -49,7 +42,13 @@
                 </a>
                 
             </li>
-          
+            <li class="sidebar-item ">
+                <a href="doctors.php" class='sidebar-link'>
+                    <i data-feather="layout" width="20"></i> 
+                    <span>Manage Doctors List</span>
+                </a>
+                
+            </li>
 
             <li class="sidebar-item  ">
                 <a href="doctors-sched.php" class='sidebar-link'>
