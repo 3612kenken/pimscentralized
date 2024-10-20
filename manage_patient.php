@@ -48,7 +48,13 @@
                 </a>
                 
             </li>
-          
+           <li class="sidebar-item ">
+                <a href="doctors.php" class='sidebar-link'>
+                    <i data-feather="layout" width="20"></i> 
+                    <span>Manage Doctor list</span>
+                </a>
+                
+            </li>
 
             <li class="sidebar-item  ">
                 <a href="doctors-sched.php" class='sidebar-link'>
