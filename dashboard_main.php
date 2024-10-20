@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Voler Admin Dashboard</title>
+    <title>Dashboard - PISYS</title>
     
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     
@@ -22,28 +22,28 @@
       <div class="sidebar-header" >
         
         <p class="title text-primary">PIMS </p>
-        <h2 class="text-primary" style="font-size:large; margin:0%;padding:0%;margin-bottom: 0%;">Patient Information and Monitoring System</h2>
+        <h2 class="text-primary" style="font-size:large; margin:0%;padding:0%;margin-bottom: 0%;">Patient Information System</h2>
     </div>
     <div class="sidebar-menu">
         <ul class="menu">
         
             <li class='sidebar-title'>Patient Assist Menu</li>
             <li class="sidebar-item active ">
-                <a href="dashboard_main.html" class='sidebar-link'>
+                <a href="dashboard_main.php" class='sidebar-link'>
                     <i data-feather="home" width="20"></i> 
                     <span>Dashboard</span>
                 </a>
                 
             </li>
             <li class="sidebar-item ">
-                <a href="manage_patient.html" class='sidebar-link'>
+                <a href="manage_patient.php" class='sidebar-link'>
                     <i data-feather="layout" width="20"></i> 
                     <span>Manage Patient</span>
                 </a>
                 
             </li>
             <li class="sidebar-item ">
-                <a href="doctors.html" class='sidebar-link'>
+                <a href="doctors.php" class='sidebar-link'>
                     <i data-feather="layout" width="20"></i> 
                     <span>Manage Doctors List</span>
                 </a>
@@ -51,51 +51,18 @@
             </li>
 
             <li class="sidebar-item  ">
-                <a href="doctors-sched.html" class='sidebar-link'>
+                <a href="doctors-sched.php" class='sidebar-link'>
                     <i data-feather="layout" width="20"></i> 
                     <span>Doctor's Schedule</span>
                 </a>
                 
             </li>
-
-        
-        
-        
-            <li class='sidebar-title'>Pages</li>
-        
-        
-        
-            <li class="sidebar-item  has-sub">
-                <a href="#" class='sidebar-link'>
-                    <i data-feather="user" width="20"></i> 
-                    <span>Authentication</span>
+			<li class="sidebar-item  ">
+                <a href="users-maintenance.php" class='sidebar-link'>
+                    <i data-feather="layout" width="20"></i> 
+                    <span>User's Maintenance</span>
                 </a>
-                
-                <ul class="submenu ">
-                    
-                    <li>
-                        <a href="auth-login.html">Login</a>
-                    </li>
-                    
-                    <li>
-                        <a href="auth-register.html">Register</a>
-                    </li>
-                    
-                    <li>
-                        <a href="auth-forgot-password.html">Forgot Password</a>
-                    </li>
-                    
-                </ul>
-                
             </li>
-
-        
-        
-        
-
-        
-        
-     
     </ul>
     </div>
     <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -133,20 +100,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="dropdown nav-icon mr-2">
-                            <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-                                <div class="d-lg-inline-block">
-                                    <i data-feather="mail"></i>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
-                            </div>
-                        </li>
+                       
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                                 <div class="avatar mr-1">

@@ -22,7 +22,7 @@
                     <div class="text-center mb-5">
                         <img src="assets/images/MarSU-PMIS.png" height="100" class='mb-4'>
                         <h3>Sign In</h3>
-                        <h4>Patient Information and Monitoring System</h4>
+                        <h4>Patient Information System</h4>
                     </div>
                     <form action="index.html">
                         <div class="form-group position-relative has-icon-left">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="clearfix">
-                            <a class="btn btn-primary float-right" href="dashboard_main.html" >Submit</a>
+                            <a class="btn btn-primary float-right" href="dashboard_main.php" >Submit</a>
                         </div>
                     </form>
                    
