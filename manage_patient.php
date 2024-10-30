@@ -21,7 +21,7 @@
     <div class="sidebar-header" >
         
         <p class="title text-primary">PIMS </p>
-        <h2 class="text-primary" style="font-size:large; margin:0%;padding:0%;margin-bottom: 0%;">Patient Information and Monitoring System</h2>
+        <h2 class="text-primary" style="font-size:large; margin:0%;padding:0%;margin-bottom: 0%;">Patient Information System</h2>
     </div>
     <div class="sidebar-menu">
        <ul class="menu">
@@ -153,7 +153,7 @@
                     <div class="list-group list-group-horizontal-sm mb-1 text-center" role="tablist">
                       
                         <a class="list-group-item list-group-item-action active" id="list-monday-list" data-toggle="list" href="#phistory" role="tab" aria-selected="false">History</a>
-                        <a class="list-group-item list-group-item-action" id="list-sunday-list" data-toggle="list" href="#add-record" role="tab" aria-selected="true">Patient Complain</a>
+                        <a class="list-group-item list-group-item-action" id="list-sunday-list" data-toggle="list" href="#add-record" role="tab" aria-selected="true">Chief-complaint</a>
                         <a class="list-group-item list-group-item-action" id="list-monday-list" data-toggle="list" href="#plaboratory" role="tab" aria-selected="false">Laboratory Results</a>
                         <a class="list-group-item list-group-item-action" id="list-monday-list" data-toggle="list" href="#assign-doctor" role="tab" aria-selected="false">Assign to new Doctor</a>
                     
@@ -170,7 +170,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Date </th>
-                                            <th>Reason to visit </th>
+                                            <th>Complaint </th>
                                             <th>Symptoms</th>
                                             <th>Allergies</th>
                                             <th>Medication</th>
@@ -300,7 +300,7 @@
                         </div>
                         <div class="tab-pane fade" id="add-record" role="tabpanel" aria-labelledby="list-sunday-list">
                             <br>
-                            <h3 class="text-center">New Patient Complain</h3>
+                            <h3 class="text-center">New Chief-complaint</h3>
                                 <div class="row">
                                     
                                     <div class="col-md-6">
@@ -308,7 +308,7 @@
                                         <hr>
                                         <h5 >Date</h5>
                                             <label>2023-11-11</label>
-                                        <h5 >Reason to visit</h5>
+                                        <h5 >Complaint</h5>
                                             <label>Masakit ang Ulo</label>
                                         <h5 >Symptoms</h5>
                                              <label>Head pain</label>
@@ -327,7 +327,7 @@
                                             <input type="date" id="first-name-column" class="form-control" name="lname-column">
                                         </div>
                                         <div class="form-group">
-                                            <label for="first-name-column">Reason To Visit</label>
+                                            <label for="first-name-column">Complaint</label>
                                             <input type="text" id="first-name-column" class="form-control" name="lname-column">
                                         </div>
                                         <div class="form-group">
@@ -423,16 +423,31 @@
                             <div class="list-group list-group-horizontal-sm mb-1 text-center" role="tablist">
                       
                                 <a class="list-group-item list-group-item-action active" id="list-monday-list" data-toggle="list" href="#basic-info" role="tab" aria-selected="false">Basic Information</a>
-                                <a class="list-group-item list-group-item-action " id="list-sunday-list" data-toggle="list" href="#other-details" role="tab" aria-selected="true">Other Details</a>
+                                <a class="list-group-item list-group-item-action " id="list-sunday-list" data-toggle="list" href="#other-details" role="tab" aria-selected="true">Chief-Complaint</a>
                         
                             
                             </div>
                             
                             <div class="tab-content text-justify">
                                  <div class="tab-pane fade active show" id="basic-info" role="tabpanel" aria-labelledby="list-monday-list">
-                               
-                                    <p><b>FULL NAME</b></p>
-                                    <div class="row">
+									<div class="row">
+										<p><b>CONDITION ON ARRIVAL</b></p>
+										<div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                
+                                                <select  id="condition-column" class="form-control" name="municipality-column">
+                                                    <option disabled selected>--Select Condition--</option>
+                                                    <option>Good</option>
+                                                    <option>Fair</option>
+                                                    <option>Poor</option>
+                                                    <option>DOA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+										
+											
+										<p><b>PATIENT'S NAME</b></p>
+                                   
                                         <div class="col-md-4 col-12">
                                         
                                             <div class="form-group">
@@ -486,16 +501,13 @@
                                                 <input type="text" id="street-column" class="form-control"  name="street-column">
                                             </div>
                                         </div>
-                        
-                                
-                                        <div class="col-md-3 col-12">
+										<div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label for="company-column">Date of Birth</label>
                                                 <input type="date" id="company-column" class="form-control" name="company-column">
                                             </div>
                                         </div>
-                                
-                                        <div class="col-md-3 col-12">
+										<div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label for="barangay-column">Gender</label>
                                                 <select  id="barangay-column" class="form-control" name="barangay-column">
@@ -506,6 +518,23 @@
                                                 </select>
                                             </div>
                                         </div>
+										 <div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="barangay-column">Civil Status</label>
+                                                <select  id="barangay-column" class="form-control" name="barangay-column">
+                                                
+                                                    <option selected>Single</option>
+													<option >Child</option>
+                                                    <option>Married</option>
+                                                    <option>Widow</option>
+													<option>Separated</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                
+                                        
+                                
+                                     
                                         <div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label for="barangay-column">Nationality</label>
@@ -516,17 +545,36 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 col-12">
+										 <div class="col-md-3 col-12">
                                             <div class="form-group">
-                                                <label for="barangay-column">Civil Status</label>
-                                                <select  id="barangay-column" class="form-control" name="barangay-column">
+                                                <label for="religion-column">Religion</label>
+                                                <select  id="religion-column" class="form-control" name="religion-column">
                                                 
-                                                    <option selected>Single</option>
-                                                    <option>Married</option>
-                                                    <option>Widow</option>
+                                                    <option selected>Catholic</option>
+                                                    <option>Sabadista</option>
+                                                    <option>Born Again</option>
                                                 </select>
                                             </div>
                                         </div>
+										
+										<div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="occupation-column">Occupation</label>
+												<input type="text" id="occupation-column" class="form-control"  name="occupation-column">
+                                           
+                                                
+                                            </div>
+                                        </div>
+										<div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="mss-column">MSS Class</label>
+												<input type="text" id="mss-column" class="form-control"  name="mss-column">
+                                           
+                                                
+                                            </div>
+                                        </div>
+                                       
+										
                                     </div>
                                 </div>
                             
