@@ -493,8 +493,26 @@
                                         </div>
 										<div class="col-md-3 col-12">
                                             <div class="form-group">
+                                                <label for="company-column">Phone Number</label>
+                                                <input type="text" id="company-column" class="form-control" name="company-column">
+                                            </div>
+                                        </div>
+										<div class="col-md-3 col-12">
+                                            <div class="form-group">
                                                 <label for="company-column">Date of Birth</label>
                                                 <input type="date" id="company-column" class="form-control" name="company-column">
+                                            </div>
+                                        </div>
+										<div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="company-column">Place of Birth</label>
+                                                <input type="text" id="company-column" class="form-control" name="company-column">
+                                            </div>
+                                        </div>
+										<div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="company-column">Informant</label>
+                                                <input type="text" id="company-column" class="form-control" name="company-column">
                                             </div>
                                         </div>
 										<div class="col-md-3 col-12">
@@ -563,7 +581,25 @@
                                                 
                                             </div>
                                         </div>
-                                       
+                                       <div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="mss-column">Nearest Relative</label>
+												<input type="text" id="mss-column" class="form-control"  name="mss-column">
+                                           
+                                                
+                                            </div>
+                                        </div>
+										<div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="religion-column">Relationship</label>
+                                                <select  id="religion-column" class="form-control" name="religion-column">
+                                                
+                                                    <option selected>Cousin</option>
+                                                    <option>Grand Mother/Grand Father</option>
+                                                    <option>Grand Child</option>
+                                                </select>
+                                            </div>
+                                        </div>
 										
                                     </div>
                                 </div>
