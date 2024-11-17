@@ -1,3 +1,12 @@
+<?php 
+session_start();
+
+		if(isset($_SESSION['ID'])){
+			
+		}else{
+			header("Location: index.php");
+		}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,50 +35,67 @@
     </div>
     <div class="sidebar-menu">
         <ul class="menu">
-        
-            <li class='sidebar-title'>Patient Assist Menu</li>
-            <li class="sidebar-item active ">
-                <a href="dashboard_main.php" class='sidebar-link'>
+		<li class='sidebar-title'>Patient Assist Menu</li>
+			<?php
+			
+			
+            
+			if($_SESSION['user_level']=="Doctor"){
+            echo '<li class="sidebar-item active ">
+                <a href="dashboard_main.php" class="sidebar-link">
                     <i data-feather="home" width="20"></i> 
                     <span>Dashboard</span>
                 </a>
                 
             </li>
+					
+				</li>
+				 <li class="sidebar-item  ">
+                <a href="doctors-sched.php" class="sidebar-link">
+                    <i data-feather="layout" width="20"></i> 
+                    <span>Doctors Schedule</span>
+                </a>
+                
+            </li>';
+			}
+			?>
+			
 			<li class="sidebar-item ">
-                <a href="profile.php" class='sidebar-link'>
-                    <i data-feather="layout" width="20"></i> 
-                    <span>Profile</span>
-                </a>
-                
-            </li>
-            <li class="sidebar-item ">
-                <a href="manage_patient.php" class='sidebar-link'>
-                    <i data-feather="layout" width="20"></i> 
-                    <span>Manage Patient</span>
-                </a>
-                
-            </li>
-           <li class="sidebar-item ">
-                <a href="doctors.php" class='sidebar-link'>
-                    <i data-feather="layout" width="20"></i> 
-                    <span>Manage Doctor list</span>
-                </a>
-                
-            </li>
+					<a href="profile.php" class="sidebar-link">
+						<i data-feather="layout" width="20"></i> 
+						<span>Profile</span>
+					</a>
+			
+			<?php
+			
+			if($_SESSION['user_level']=="Administrator" || $_SESSION['user_level']=="Nurse"){
+				echo '<li class="sidebar-item ">
+					<a href="manage_patient.php" class="sidebar-link">
+						<i data-feather="layout" width="20"></i> 
+						<span>Manage Patient</span>
+					</a>
+					
+				</li>';
+			
+			}
+			 if($_SESSION['user_level']=="Administrator"){
+			   echo '<li class="sidebar-item ">
+					<a href="doctors.php" class="sidebar-link">
+						<i data-feather="layout" width="20"></i> 
+						<span>Manage Doctor list</span>
+					</a>
+					
+				</li>
 
-            <li class="sidebar-item  ">
-                <a href="doctors-sched.php" class='sidebar-link'>
-                    <i data-feather="layout" width="20"></i> 
-                    <span>Doctor's Schedule</span>
-                </a>
-                
-            </li>
+           
 			<li class="sidebar-item  ">
-                <a href="users-maintenance.php" class='sidebar-link'>
+                <a href="users-maintenance.php" class="sidebar-link">
                     <i data-feather="layout" width="20"></i> 
-                    <span>User's Maintenance</span>
+                    <span>Users Maintenance</span>
                 </a>
-            </li>
+            </li>';
+			}
+			?>
     </ul>
     </div>
     <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

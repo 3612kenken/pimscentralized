@@ -1,3 +1,6 @@
+<?php
+//session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +27,7 @@
                         <h3>Sign In</h3>
                         <h4>Patient Information System</h4>
                     </div>
-                    <form action="index.html">
+                  
                         <div class="form-group position-relative has-icon-left">
                             <label for="username">Username</label>
                             <div class="position-relative">
@@ -59,9 +62,9 @@
                             </div>
                         </div>
                         <div class="clearfix">
-                            <a class="btn btn-primary float-right" href="dashboard_main.php" >Submit</a>
+                            <a class="btn btn-primary float-right" onclick="Auth()" >Submit</a>
                         </div>
-                    </form>
+                
                    
                 </div>
             </div>
@@ -74,6 +77,28 @@
     <script src="assets/js/app.js"></script>
     
     <script src="assets/js/main.js"></script>
+	
+	 <!-- JavaScript files-->
+   <?php include("scripts.php") ?>
+   
+	<script>
+	function Auth(){
+		var uname=$('#username').val();
+		var pword=$('#password').val();
+		
+		$.post("functions/auth-verify.php", { uname: uname, pword: pword})
+		.done(function(data){
+			//alert(data);
+			if(data=='Failed'){ 
+			
+				SwalAlert(3,"Oops","Login Failed!");
+				
+			}else{
+				window.open('dashboard_main.php','_self');
+			}
+		});
+	};
+</script>
 </body>
 
 </html>

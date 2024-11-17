@@ -422,28 +422,18 @@
                         <form action="index.html">
                             <div class="list-group list-group-horizontal-sm mb-1 text-center" role="tablist">
                       
-                                <a class="list-group-item list-group-item-action active" id="list-monday-list" data-toggle="list" href="#basic-info" role="tab" aria-selected="false">Basic Information</a>
-                                <a class="list-group-item list-group-item-action " id="list-sunday-list" data-toggle="list" href="#other-details" role="tab" aria-selected="true">Chief-Complaint</a>
-                        
+                                <a class="list-group-item list-group-item-action active"  data-toggle="list" href="#basic-info" role="tab" aria-selected="false">Basic Information</a>
+                                 <a class="list-group-item list-group-item-action "  data-toggle="list" href="#chief-complaint" role="tab" aria-selected="true">Chief-Complaint & Diagnosis</a>
+								<a class="list-group-item list-group-item-action "  data-toggle="list" href="#vital-signs" role="tab" aria-selected="true">Vital Signs</a>
+                               
+								<a class="list-group-item list-group-item-action "  data-toggle="list" href="#admission" role="tab" aria-selected="true">Admission</a>
                             
                             </div>
                             
                             <div class="tab-content text-justify">
                                  <div class="tab-pane fade active show" id="basic-info" role="tabpanel" aria-labelledby="list-monday-list">
 									<div class="row">
-										<p><b>CONDITION ON ARRIVAL</b></p>
-										<div class="col-md-4 col-12">
-                                            <div class="form-group">
-                                                
-                                                <select  id="condition-column" class="form-control" name="municipality-column">
-                                                    <option disabled selected>--Select Condition--</option>
-                                                    <option>Good</option>
-                                                    <option>Fair</option>
-                                                    <option>Poor</option>
-                                                    <option>DOA</option>
-                                                </select>
-                                            </div>
-                                        </div>
+										
 										
 											
 										<p><b>PATIENT'S NAME</b></p>
@@ -579,8 +569,28 @@
                                 </div>
                             
                             
-                                    <div class="tab-pane fade" id="other-details" role="tabpanel" aria-labelledby="list-monday-list">
+                                    <div class="tab-pane fade" id="vital-signs" role="tabpanel" aria-labelledby="list-monday-list">
                                         <div class="row">
+										
+                                        </div>
+
+                                    </div>
+									
+									<div class="tab-pane fade" id="chief-complaint" role="tabpanel" aria-labelledby="list-monday-list">
+                                        <div class="row">
+										<p><b>CONDITION ON ARRIVAL</b></p>
+										<div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                
+                                                <select  id="condition-column" class="form-control" name="municipality-column">
+                                                    <option disabled selected>--Select Condition--</option>
+                                                    <option>Good</option>
+                                                    <option>Fair</option>
+                                                    <option>Poor</option>
+                                                    <option>DOA</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         </div>
 
                                     </div>
