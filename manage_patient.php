@@ -363,6 +363,25 @@
                                                 <label for="">History of Present Illness</label><textarea   id="" class="form-control"  name="lname-column"></textarea>
 											</div>
                                         </div>
+                                        <div class="col-md-5 col-12">
+                                            <div class="form-group">
+                                                <label for="">History of Present Illness</label>
+												<select class="form-control">
+													<?php
+													
+														$db= new PDODatabase;
+														$sql="SELECT * from tbl_nhs_disease";
+														$result = $db->prepare($sql);
+														$result->execute(array());
+														for($i=0; $row = $result->fetch();$i++){
+															echo "<option id='".$row[0]."'>".$row[1]."</option>";
+														}
+														
+													
+													?>
+												</select>
+											</div>
+                                        </div>
 										<div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="">Diagnosis/Treatment(To be update after doctor's treatment)</label>

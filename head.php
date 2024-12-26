@@ -8,6 +8,7 @@ session_start();
 		}else{
 			header("Location: index.php");
 		}
+		include('connection.php');
  ?>
 <head>
     <meta charset="UTF-8">
