@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Voler Admin Dashboard</title>
-      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    
-    <link rel="stylesheet" href="assets/vendors/chartjs/Chart.min.css">
-
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<link rel="stylesheet" href="calendar.css">
-
-</head>
+<?php include("head.php");?>
 <body>
     <div id="app">
         <div id="sidebar" class='active'>
@@ -97,98 +82,96 @@
 </div>
         </div>
         <div id="main">
-            <nav class="navbar navbar-header navbar-expand navbar-light">
-                <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
-                <button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
-                        <li class="dropdown nav-icon">
-                            <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-                                <div class="d-lg-inline-block">
-                                    <i data-feather="bell"></i>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-large">
-                                <h6 class='py-2 px-4'>Notifications</h6>
-                                <ul class="list-group rounded-none">
-                                    <li class="list-group-item border-0 align-items-start">
-                                        <div class="avatar bg-success mr-3">
-                                            <span class="avatar-content"><i data-feather="shopping-cart"></i></span>
-                                        </div>
-                                        <div>
-                                            <h6 class='text-bold'>New Order</h6>
-                                            <p class='text-xs'>
-                                                An order made by Ahmad Saugi for product Samsung Galaxy S69
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="dropdown nav-icon mr-2">
-                            <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-                                <div class="d-lg-inline-block">
-                                    <i data-feather="mail"></i>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                                <div class="avatar mr-1">
-                                    <img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="">
-                                </div>
-                                <div class="d-none d-md-block d-lg-inline-block">Hi, Saugi</div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <?php include("nav.php");?>
             
 <div class="main-content container-fluid">
-    <div class="page-title">
-        <h3>Doctor's Schedule</h3>
-        <p class="text-subtitle text-muted">Here are the list of doctor's schedule</p>
+  
+	 <div class="page-title bg-primary" >
+        <h3 class="text-white" style="padding-left:20px;padding-top:20px;">Doctor's Schedule</h3>
+        <p class="text-subtitle  text-white" style="padding-left:20px;padding-bottom:20px;">
+		Here are the list of doctor's schedule</p>
     </div>
     <section class="section">
 									<div class="row">
 										<div class="col-md-6">
+											<h4>List of Doctors</h4>
+											<div class="table-responsive">
+												<table class='table mb-0' id="table1">
+													<thead class="bg-primary text-white">
+														<tr>
+															<th>#</th>
+															<th>Full Name</th>
+															<th>Profession</th>
+															<th>Action</th>
+														</tr>
+													</thead>
+													<tbody>
+													<?php
+													$db = new PDODatabase;
+		
+			$caddress="";
+				$sql = "SELECT d.*, c.* FROM tbl_emp_and_doctor as d LEFT OUTER JOIN tbl_doctor_sched as s ON d.employee_id = s.employee_id LEFT OUTER JOIN tbl_clinic_info as c on c.employee_id = d.employee_id where d.designation=?";
+													//$ScheduleOutput
+				
+					$j=0;								
+					$result = $db->prepare($sql);
+						$result->execute(array("Doctor"));
+							for($i=0; $row = $result->fetch(); $i++){
+								$j=$i+1;
+								echo "<tr><td>".$j."</td><td>".$row[2]." ".$row[3]." ".$row[1]."</td>
+									<td>".$row[9]."</td>
+									<td><button class='btn btn-primary btn-sm' href=''>Schedule</button></td></tr>";
+							}
+													
+													?>
+													</tbody>
+												</table>
+											</div>
+
+										</div>
+										<div class="col-md-6">
                                             
-                                
+											<h4>Manage Schedule</h4>
+											
+												<label><b>Full Name:</b></label>
+												<label>Full Name</label>
+												<br><b>Profession:</b></label>
+												<label>Dr. Profession</label>
+												<hr>
+											
 											<div class="form-group">
 												<label for="first-name-column">Title</label>
 												<input type="text" id="first-name-column" class="form-control" name="lname-column">
 											</div>
-											<div class="form-group">
-												<label for="first-name-column">Date Schedule</label>
-												<input type="date" id="first-name-column" class="form-control" name="lname-column">
+											
+											<div class="input-group">
+												<div class="form-group">
+													<label for="first-name-column">Date Schedule</label>
+													<input type="date" id="first-name-column" class="form-control" name="lname-column">
+												</div>
+												<div class="form-group">
+													<label for="first-name-column">Time From</label>
+													<input type="time" id="first-name-column" class="form-control" name="lname-column">
+												</div>
+												<div class="form-group">
+													<label for="first-name-column">Time To</label>
+													<input type="time" id="first-name-column" class="form-control" name="lname-column">
+												</div>
 											</div>
 											<div class="form-group">
 												<label for="first-name-column">Description</label>
-												<input type="text" id="first-name-column" class="form-control" name="lname-column">
+												<textarea id="first-name-column" class="form-control" name="lname-column"></textarea>
 											</div>
+											<div class="text-right">
 												<a class="btn btn-success" href="">Save</a>
+											</div>		
 										</div>
-										<div class="col-md-6">
+										
+										<div class="col-md-12">
+										<hr>
 											<div class="table-responsive">
 												<table class='table mb-0' id="table1">
-													<thead>
+													<thead class="bg-primary text-white">
 														<tr>
 															<th>#</th>
 															<th>Title</th>
@@ -225,28 +208,7 @@
     </section>
 </div>
 
-            <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-left">
-                        <p>2020 &copy; Voler</p>
-                    </div>
-                    <div class="float-right">
-                        <p>Crafted with <span class='text-danger'><i data-feather="heart"></i></span> by <a href="http://ahmadsaugi.com">Ahmad Saugi</a></p>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-    <script src="assets/js/feather-icons/feather.min.js"></script>
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    
-    <script src="assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/js/pages/dashboard.js"></script>
-
-    <script src="assets/js/main.js"></script>
-	<script src="calendar.js"></script>
+           <?php include("footer.php");?>
 	<script>
 
 	$(document).ready(function() {

@@ -27,7 +27,6 @@
 				$_SESSION['password']=$password;
 				$_SESSION['user_level']=$user_level;
 				$_SESSION['employee_id']=$employee_id;
-				$_SESSION['employee_id']=$employee_id;
 				$_SESSION['status']=$status;				
 				return 'Success';
 				
