@@ -3,7 +3,6 @@ session_start();
 
 		if(isset($_SESSION['ID'])){
 			
-<<<<<<< HEAD
 		}else{
 			header("Location: index.php");
 		}
@@ -36,20 +35,11 @@ session_start();
 								$contact = $row[13];
 								$ptr = $row[15];
 							}
-=======
-			
-			
-		}else{
-			header("Location: index.php");
-		}
-		include('connection.php');
->>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
  ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PISYS-Patient Information System</title>
-<<<<<<< HEAD
 	
 
 	
@@ -57,25 +47,15 @@ session_start();
 	<link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
 
 	<link rel="stylesheet" href="assets/vendors/apexcharts/apexcharts.css">
-=======
-    
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    
-    <link rel="stylesheet" href="assets/vendors/chartjs/Chart.min.css">
->>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<<<<<<< HEAD
 	
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 
-=======
->>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 </head>
-
