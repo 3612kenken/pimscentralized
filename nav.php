@@ -20,6 +20,7 @@
                     <i data-feather="home" width="20"></i> 
                     <span>Dashboard</span>
                 </a>
+<<<<<<< HEAD
 				
                 
             </li>
@@ -34,6 +35,21 @@
                 
             </li>';
 			}
+=======
+                
+            </li>
+					
+				</li>
+				 <li class="sidebar-item  ">
+                <a href="doctors-sched.php" class="sidebar-link">
+                    <i data-feather="layout" width="20"></i> 
+                    <span>Doctors Schedule</span>
+                </a>
+                
+            </li>';
+			}
+			
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 			if($_SESSION['user_level']=="Administrator" || $_SESSION['user_level']=="Nurse"){
 				echo '<li class="sidebar-item ">
 					<a href="manage_patient.php" class="sidebar-link">
@@ -45,6 +61,7 @@
 			
 			}
 			
+<<<<<<< HEAD
 			if($_SESSION['user_level']=="Administrator"){
 				echo  '<li class="sidebar-item  ">
                 <a href="doctors-sched.php" class="sidebar-link">
@@ -58,10 +75,15 @@
 			if( $_SESSION['user_level']=="Nurse"){
 				
 				echo '<li class="sidebar-item ">
+=======
+			?>
+			<li class="sidebar-item ">
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 					<a href="profile.php" class="sidebar-link">
 						<i data-feather="layout" width="20"></i> 
 						<span>Profile</span>
 					</a>
+<<<<<<< HEAD
 					
 				</li>';
 			}
@@ -78,6 +100,11 @@
 			
 			 if($_SESSION['user_level']=="Administrator"){
 			   echo '<li class="sidebar-item " style="display:none;">
+=======
+			<?php
+			 if($_SESSION['user_level']=="Administrator"){
+			   echo '<li class="sidebar-item ">
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 					<a href="doctors.php" class="sidebar-link">
 						<i data-feather="layout" width="20"></i> 
 						<span>Manage Doctor list</span>
@@ -92,14 +119,18 @@
                     <span>Users Maintenance</span>
                 </a>
             </li>
+<<<<<<< HEAD
 			<hr>
 			<li class="sidebar-title">Reports</li>
 			
+=======
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 			<li class="sidebar-item  ">
                 <a href="users-log.php" class="sidebar-link">
                     <i data-feather="layout" width="20"></i> 
                     <span>Users Log</span>
                 </a>
+<<<<<<< HEAD
             </li>
 			<li class="sidebar-item  has-sub">
                     <a href="#" class="sidebar-link">
@@ -128,6 +159,9 @@
 			
 			
 			';
+=======
+            </li>';
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 			}
 			?>
     </ul>
@@ -185,7 +219,11 @@
                                 <div class="avatar mr-1">
                                     <img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="">
                                 </div>
+<<<<<<< HEAD
                                 <div class="d-none d-md-block d-lg-inline-block">Hi,  <?php echo $fullname; ?></div>
+=======
+                                <div class="d-none d-md-block d-lg-inline-block">Hi, Kenneth Omiping</div>
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>

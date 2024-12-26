@@ -66,9 +66,15 @@
             
 <div class="main-content container-fluid">
     <?php include('modal-patient-info.php'); ?> 
+<<<<<<< HEAD
     <div class="page-title bg-primary" >
         <h3 class="text-white" style="padding-left:20px;padding-top:20px;">Manage Patient</h3>
         <p class="text-subtitle  text-white" style="padding-left:20px;padding-bottom:20px;">Basic information of patient</p>
+=======
+    <div class="page-title">
+        <h3>Manage Patient</h3>
+        <p class="text-subtitle text-muted">Patient Information - Add Patient</p>
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
     </div>
     
     <section class="section">
@@ -81,13 +87,31 @@
                     <div class="card-body">
                        
                         <form action="index.html">
+<<<<<<< HEAD
                            
+=======
+                            <div class="list-group list-group-horizontal-sm mb-1 text-center" role="tablist">
+                      
+                                <a class="list-group-item list-group-item-action active"  data-toggle="list" href="#basic-info" role="tab" aria-selected="false">Basic Information</a>
+                                 
+								<a class="list-group-item list-group-item-action"  data-toggle="list" href="#vital-signs" role="tab" aria-selected="true">Vital Signs</a>
+                               <a class="list-group-item list-group-item-action"  data-toggle="list" href="#chief-complaint" role="tab" aria-selected="true">Chief-Complaint & Diagnosis</a>
+								<!--<a class="list-group-item list-group-item-action"  data-toggle="list" href="#admission" role="tab" aria-selected="true">Admission</a>
+								<a class="list-group-item list-group-item-action"  data-toggle="list" href="#assigndoctor" role="tab" aria-selected="true">Assign Doctor</a>-->
+                            </div>
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
                             
                             <div class="tab-content text-justify">
 							
 								
                               
+<<<<<<< HEAD
 								<div class="row">
+=======
+								
+                                 <div class="tab-pane fade active show" id="basic-info" role="tabpanel" aria-labelledby="list-monday-list">
+									<div class="row">
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 										
 										
 											
@@ -263,11 +287,179 @@
                                             </div>
                                         </div>
 										<div class="clearfix">
+<<<<<<< HEAD
 											<a class="btn btn-success float-right" onclick="SaveBasicInfo()">Save Basic Information</a>
 										</div>
 										
                                     </div>
                                
+=======
+											<button class="btn btn-success float-right" onclick="SaveBasicInfo()">Save Basic Information</button>
+										</div>
+										
+                                    </div>
+                                </div>
+                            
+                            
+                                <div class="tab-pane fade" id="vital-signs" role="tabpanel" aria-labelledby="list-monday-list">
+                                    <div class="row">
+										<div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="temp">Temperature(Temp)</label>
+                                                <input type="text" id="temp" class="form-control"  name="temp">
+                                            </div>
+                                        </div>
+										<div class="col-md-4 col-12">
+                                        
+                                            <div class="form-group">
+                                                <label for="cr">Circulation Rate(CR)</label>
+                                                <input type="text" id="cr" class="form-control"  name="cr">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="">Heart Rate(HR)</label>
+                                                <input type="text" id="" class="form-control"  name="">
+                                            </div>
+                                        </div>
+										<div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="">Respiratory Rate(RR)</label>
+                                                <input type="text" id="" class="form-control"  name="">
+                                            </div>
+                                        </div>
+										<div class="col-md-4 col-12">
+                                        
+                                            <div class="form-group">
+                                                <label for="">Blood Pressure(BP)</label>
+                                                <input type="text" id="" class="form-control"  name="">
+                                            </div>
+                                        </div>
+										<div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="">Weight</label>
+                                                <input type="text" id="" class="form-control"  name="">
+                                            </div>
+                                        </div>
+										<div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <label for="">Height</label>
+                                                <input type="text" id="" class="form-control"  name="">
+                                            </div>
+                                        </div>
+									
+									</div>
+									<div class="clearfix">
+											<button class="btn btn-success float-right">Save Vital Sign</button>
+										</div>
+
+								</div>
+									
+									<div class="tab-pane fade" id="chief-complaint" role="tabpanel" aria-labelledby="list-monday-list">
+                                        <div class="row">
+										
+										<div class="col-md-3 col-12">
+                                            <div class="form-group">
+                                                <p><b>CONDITION ON ARRIVAL</b></p>
+                                                <select  id="condition-column" class="form-control" name="municipality-column">
+                                                    <option disabled selected>--Select Condition--</option>
+                                                    <option>Good</option>
+                                                    <option>Fair</option>
+                                                    <option>Poor</option>
+                                                    <option>DOA</option>
+                                                </select>
+                                            </div>
+											
+												
+                                        </div>
+										<div class="col-md-4 col-12">
+                                        
+                                            <div class="form-group">
+                                                <label for="">Chief Complaint</label>
+                                                <textarea id="" class="form-control"  name="fname-column"></textarea>
+											</div>
+                                        </div>
+                                        <div class="col-md-5 col-12">
+                                            <div class="form-group">
+                                                <label for="">History of Present Illness</label><textarea   id="" class="form-control"  name="lname-column"></textarea>
+											</div>
+                                        </div>
+                                        <div class="col-md-5 col-12">
+                                            <div class="form-group">
+                                                <label for="">History of Present Illness</label>
+												<select class="form-control">
+													<?php
+													
+														$db= new PDODatabase;
+														$sql="SELECT * from tbl_nhs_disease";
+														$result = $db->prepare($sql);
+														$result->execute(array());
+														for($i=0; $row = $result->fetch();$i++){
+															echo "<option id='".$row[0]."'>".$row[1]."</option>";
+														}
+														
+													
+													?>
+												</select>
+											</div>
+                                        </div>
+										<div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">Diagnosis/Treatment(To be update after doctor's treatment)</label>
+                                                <textarea id="" class="form-control"  name="lname-column"></textarea>
+											</div>
+                                        </div>
+										<div class="row">
+											<h3>Assign Doctor</h3>
+											
+											<div class="table-responsive">
+											<table class='table mb-0' id="table1">
+												<thead>
+													<tr>
+														<th>Last Name</th>
+														<th>First Name</th>
+														<th>Middle Name</th>
+														<th>Ext</th>
+														<th>Action</th>
+													 
+														
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Omiping</td>
+														<td>Dr. Kenneth</td>
+														<td>Layron</td>
+														<td>N/A</td>
+														
+													   
+														<td>
+															<button class="btn badge bg-primary"> <i class="fa fa-edit"></i>Assign</button>
+														</td>
+														
+													</tr>
+												   
+												</tbody>
+											</table>
+											<br>
+										</div>
+										
+									</div>
+										<div class="clearfix">
+											<button class="btn btn-success float-right">Save and add to queue</button>
+										</div>
+                                        </div>
+
+                                    </div>
+									<div class="tab-pane fade" id="admission" role="tabpanel" aria-labelledby="list-monday-list">
+										<div class="row">
+										
+										</div>
+									
+									</div>
+								
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
                            
                             <br>
                             
@@ -322,6 +514,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+<<<<<<< HEAD
 								<?php
 									$sql = "Select * from tbl_patient_info";
 													$output='';
@@ -343,6 +536,25 @@
                                             </td>
 											<td>None</td>
 											<td>
+=======
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Omiping</td>
+                                        <td>Kenneth</td>
+                                        <td>Layron</td>
+                                        <td>N/A</td>
+                                        <td>
+                                            <button class="btn badge bg-danger" data-toggle="modal" data-target="#patient_history">Patient History</button> 
+                                            <button class="btn badge bg-primary" data-toggle="modal" data-target="#patient-lab">Patient Laboratory</button> 
+                                            
+                                    
+                                            
+                                        </td>
+                                        <td>
+                                            <span class="text-primary">Dr. Kenneth Omiping</span>  at 2nd Floor Room 3
+                                        </td>
+                                        <td>
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
                                             <button class="btn badge bg-primary"> <i class="fa fa-edit"></i></button>
                                             <button class="btn badge bg-danger" onclick="DeleteData(&#39;'.$row[0].'&#39;, &#39;59be36566f9cc3a098a0f15fb61a49653dc902c1&#39;,3);"> <i class="fa fa-trash"></i></button>
                                         </td>
@@ -363,11 +575,19 @@
         </div>
     </section>
 </div>
+<<<<<<< HEAD
 <?php 
 include("scripts.php");
 
 include("footer.php");
 
+=======
+<?php include("footer.php");?>
+    <script>
+        var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
+triggerTabList.forEach(function (triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 
 ?>
     <script src="manage-patient.js">

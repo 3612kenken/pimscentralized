@@ -1,8 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
     <link rel="stylesheet" href="assets/calendar/css/style.css">
 
+=======
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 <?php include("head.php");
 
 
@@ -19,6 +22,7 @@ if(isset($_SESSION['ID'])){
 				
 			}
 			
+<<<<<<< HEAD
 		}
 		
 			
@@ -27,6 +31,12 @@ if(isset($_SESSION['ID'])){
 
 <body>
 
+=======
+		}?>
+
+
+<body>
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
     <div id="app">
         
         <div id="main">
@@ -295,6 +305,7 @@ if(isset($_SESSION['ID'])){
 		  <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
 <script src="assets/js/pages/ui-apexchart.js"></script>
 
+<<<<<<< HEAD
 		  <script>
 		  
 		  var options = {
@@ -329,5 +340,8 @@ if(isset($_SESSION['ID'])){
         var chart = new ApexCharts(document.querySelector("#doctor"), options);
         chart.render();
 		  </script>
+=======
+          <?php include("footer.php");?>
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 </body>
 </html>

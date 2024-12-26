@@ -119,11 +119,19 @@
                       
                         <a class="list-group-item list-group-item-action active" id="list-monday-list" data-toggle="list" href="#sub-complaint" role="tab" aria-selected="false">Complaint/Diagnosis</a>
 						<!--<a class="list-group-item list-group-item-action" id="list-monday-list" data-toggle="list" href="#sub-admission" role="tab" aria-selected="false">Admission</a>-->
+<<<<<<< HEAD
 						<a class="list-group-item list-group-item-action" id="list-monday-list" data-toggle="list" href="#vital-hs" role="tab" aria-selected="false">Vital Signs</a>
 						<!--<a class="list-group-item list-group-item-action" id="list-monday-list" data-toggle="list" href="#sub-diagnosis" role="tab" aria-selected="false">Diagnosis</a>-->
                         
                       
 						<a class="list-group-item list-group-item-action" id="list-monday-list" data-toggle="list" href="#laboratory" role="tab" aria-selected="false">Laboratory</a>
+=======
+						<a class="list-group-item list-group-item-action" id="list-monday-list" data-toggle="list" href="#vital-hs" role="tab" aria-selected="false">Vital Signs History</a>
+						<!--<a class="list-group-item list-group-item-action" id="list-monday-list" data-toggle="list" href="#sub-diagnosis" role="tab" aria-selected="false">Diagnosis</a>
+                        
+                      
+						<a class="list-group-item list-group-item-action" id="list-monday-list" data-toggle="list" href="#assign-doctor" role="tab" aria-selected="false">Previous Doctors</a>-->
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
                     </div>
 
                     <div class="tab-content text-justify">
@@ -136,6 +144,7 @@
                         <div class="tab-pane fade active show" id="sub-complaint" role="tabpanel" aria-labelledby="list-monday-list">
                           
 							<div class="tab-content text-justify">
+<<<<<<< HEAD
 									<br>
 									<div class="row">
 									
@@ -230,6 +239,13 @@
 									<div class="table-responsive">
 										<table class='table mb-0' id="table1">
 											<thead class="bg-info text-white">
+=======
+							 
+									<h3 class="text-center">History of Patient</h3>
+									<div class="table-responsive">
+										<table class='table mb-0' id="table1">
+											<thead>
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 												<tr>
 													<th>#</th>
 													<th>Date </th>
@@ -237,12 +253,17 @@
 													<th>Chief Complaint </th>
 													<th>History/Phisical Examination</th>
 													<th>Diagnosis/Treatment</th>
+<<<<<<< HEAD
 													<th>Previous Doctor</th>
+=======
+													<th>Doctor</th>
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 													<th>Prescription</th>
 												</tr>
 											</thead>
 											
 											<tbody>
+<<<<<<< HEAD
 												<?php
 												$output="";
 												$sql ="SELECT p.*, d.disease, CONCAT('Dr. ', doc.firstname,' ', doc.middle, ' ', doc.lastname) as Doctors FROM tbl_patient_complaint as p LEFT OUTER JOIN tbl_nhs_disease as d on p.nhsid = d.nhsid LEFT OUTER JOIN tbl_emp_and_doctor as doc on doc.employee_id = p.employee_id;";
@@ -262,6 +283,9 @@
 												}
 												echo $output;
 											?>
+=======
+												
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 											</tbody>
 											
 										</table>
@@ -308,6 +332,7 @@
 								
                             </div>
                         </div>
+<<<<<<< HEAD
 						<div class="tab-pane fade" id="laboratory" role="tabpanel" aria-labelledby="list-tuesday-list">
 							<br>
                             <h3 class="text-center">Add Laboratory Result</h3>
@@ -456,6 +481,15 @@
 										<div class="table-responsive">
 											<table class='table mb-0' id="table1">
 												<thead class="bg-success text-white">
+=======
+						<div class="tab-pane fade" id="vital-hs" role="tabpanel" aria-labelledby="list-tuesday-list">
+							<br>
+                            <h3 class="text-center">Vital Signs History</h3>
+                            <div class="row">
+										<div class="table-responsive">
+											<table class='table mb-0' id="table1">
+												<thead>
+>>>>>>> 4155b13ec68b6dc5bd6b45d215bd3a61f3bb5878
 													<tr>
 														<th>#</th>
 														<th>Blood Pressure(BP)</th>
