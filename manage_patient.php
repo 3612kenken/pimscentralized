@@ -19,31 +19,16 @@
                     <p class="text-subtitle  text-white" style="padding-left:20px;padding-bottom:20px;">Basic
                         information of patient</p>
                 </div>
-
                 <section class="section">
-
                     <div class="row mb-4">
-
                         <div class="col-md-12">
                             <div class="card ">
-
                                 <div class="card-body">
-
                                     <form action="index.html">
-
-
                                         <div class="tab-content text-justify">
-
-
-
                                             <div class="row">
-
-
-
                                                 <p><b>PATIENT'S NAME</b></p>
-
                                                 <div class="col-md-4 col-12">
-
                                                     <div class="form-group">
                                                         <label for="lastname">Last Name</label>
                                                         <input type="text" id="lastname" class="form-control"
@@ -332,6 +317,11 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#table1').DataTable();
+                                        });
+                                    </script>
                                 </div>
                             </div>
                         </div>

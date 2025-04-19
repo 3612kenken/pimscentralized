@@ -140,3 +140,30 @@ function UpdateNotif(notif, status){
 				
 					//window.open("college-info.php?tab-indx="+tabindx,"_self");
 		}
+		function AddVitalSign() {
+			var temp = $('#temp').val();
+			var hr = $('#hr').val();
+			var rr = $('#rr').val();
+			var bp = $('#bp').val();
+			var ht = $('#ht').val();
+			var wt = $('#wt').val();
+			var patient_id =	$('#patient_id').val();
+			
+			if (temp === '' || hr === '' || rr === '' || bp === '' || ht === '' || wt === '') {
+				SwalAlert(3, "Oops", "Please fill in all required fields!");
+			} else {
+				$.post("./functions/functions.php", {
+					patient_id: patient_id,
+					temp: temp,
+					hr: hr,
+					rr: rr,
+					bp: bp,
+					ht: ht,
+					wt: wt
+				})
+				.done(function(data) {
+					alert(data);
+					location.reload();
+				});
+			}
+		}

@@ -68,13 +68,28 @@
                 }
                 if ($_SESSION['user_level'] == "Doctor") {
 
-                    echo '<li class="sidebar-item ">
+                    echo '<li class="sidebar-item" style="display:none;">
 					<a href="calendar.php" class="sidebar-link">
 						<i data-feather="layout" width="20"></i> 
 						<span>Calendar Schedule</span>
 					</a>
 					
-				</li>';
+				</li>
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class="sidebar-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> 
+                        <span>Medical Services Report</span>
+                    </a>
+                    
+                    <ul class="submenu active">
+                        
+                        <li>
+                            <a href="patient-masterlist.php"">Patient Masterlist</a>
+                        </li>
+                        <li>
+                            <a href="patient-summary.php">Patient Summary</a>
+                        </li>
+                        ';
                 }
 
                 if ($_SESSION['user_level'] == "Administrator") {

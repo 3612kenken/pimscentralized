@@ -29,7 +29,6 @@
 				$_SESSION['employee_id']=$employee_id;
 				$_SESSION['status']=$status;				
 				return 'Success';
-				
 			}
 		}
 		
