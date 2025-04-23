@@ -40,6 +40,33 @@
                     var output = document.getElementById('output');
                     output.src = URL.createObjectURL(event.target.files[0]);
                 };
+
+                function SaveRecord() {
+                    const data = {
+                        update_profile: true,
+                        puemployee_id: '<?php echo $_SESSION['employee_id']; ?>',
+                        pulastname: document.getElementById('lastname').value,
+                        pufirstname: document.getElementById('firstname').value,
+                        pumiddle: document.getElementById('middle').value,
+                        pudesignation: '<?php echo $designation; ?>',
+                        pugender: '<?php echo $gender; ?>',
+                        puaddress: '<?php echo $address; ?>',
+                        puusername: document.getElementById('username').value,
+                        pupassword: document.getElementById('password').value,
+                        puclinic_id: '<?php echo $clinic; ?>',
+                        puprofession: document.getElementById('profession') ? document.getElementById('profession').value : '',
+                        pulicense_num: document.getElementById('license_num') ? document.getElementById('license_num').value : '',
+                        puclinic_name: document.getElementById('clinic_name') ? document.getElementById('clinic_name').value : '',
+                        puclinic_address: document.getElementById('clinic_address') ? document.getElementById('clinic_address').value : '',
+                        pucontact: document.getElementById('contact') ? document.getElementById('contact').value : '',
+                        puptr: document.getElementById('ptr') ? document.getElementById('ptr').value : ''
+                    };
+
+                    $.post('./functions/functions.php', data, function (response) {
+                        alert(response);
+                        location.reload();
+                    });
+                }
             </script>
 </body>
 

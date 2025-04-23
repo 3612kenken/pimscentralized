@@ -11,10 +11,9 @@
     });
     	
     const canvas = document.querySelector('#canvas');
-    
+
     // Context for the canvas for 2 dimensional operations
-    const ctx = canvas.getContext('2d');
-    	
+    const ctx = canvas.getContext('2d');	
     // Resizes the canvas to the available size of the window.
     function resize(){
     ctx.canvas.width = window.innerWidth;

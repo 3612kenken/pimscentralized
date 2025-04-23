@@ -282,7 +282,7 @@
 
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="table-patient">
                                                 <?php
                                                 $sql = "Select * from tbl_patient_info";
                                                 $output = '';
@@ -317,11 +317,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <script>
-                                        $(document).ready(function () {
-                                            $('#table1').DataTable();
-                                        });
-                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -331,12 +326,10 @@
             </div>
             <?php
             include("scripts.php");
-
             include("footer.php");
-
-
             ?>
-            <script src="manage-patient.js">
+
+            <script>
                 <?php include("manage-patient.js"); ?>
             </script>
 </body>

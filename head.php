@@ -20,6 +20,7 @@ $license = "";
 $clinicname = "";
 $contact = "";
 $ptr = "";
+$gender = ""; // Added to fix the undefined variable issue
 $sql = "SELECT d.*, c.* FROM tbl_emp_and_doctor as d LEFT OUTER JOIN tbl_doctor_sched as s ON d.employee_id = s.employee_id LEFT OUTER JOIN tbl_clinic_info as c on c.employee_id = d.employee_id WHERE d.employee_id =?";
 //$ScheduleOutput
 $output = '';
@@ -40,6 +41,7 @@ for ($i = 0; $row = $result->fetch(); $i++) {
 	$caddress = $row[12];
 	$contact = $row[13];
 	$ptr = $row[15];
+	$gender = $row[5]; // Assigning the gender value from the database
 }
 ?>
 

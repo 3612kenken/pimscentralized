@@ -30,13 +30,13 @@
 
 
 
-							$sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, c.patient_condition, c.chief_complaint, c.history, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender, CONCAT(p.street,' ', p.barangay,' ', p.municipality,' ', p.province) as Address from tbl_queue as q LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id WHERE q.employee_id=? and q.status=? and p.firstname<>?";
+							$sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, c.patient_condition, c.chief_complaint, c.history, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender, CONCAT(p.street,' ', p.barangay,' ', p.municipality,' ', p.province) as Address from tbl_queue as q LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id WHERE q.employee_id=? and q.status=? GROUP BY c.complaint_id order by q.datetime_queue DESC;";
 							//$sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, c.patient_condition, c.chief_complaint, c.history, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender, p.address from tbl_queue as q LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id WHERE q.employee_id=? and q.status=?";
 							//$ScheduleOutput
 							$output = '';
 
 							$result = $db->prepare($sql);
-							$result->execute(array($_SESSION['employee_id'], 'Pending', ""));
+							$result->execute(array($_SESSION['employee_id'], 'Pending'));
 							$j = 0;
 							for ($i = 0; $row = $result->fetch(); $i++) {
 								$j = $i + 1;
@@ -115,13 +115,13 @@
 												from tbl_queue as q 
 												LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id 
 												LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id 
-												WHERE q.employee_id=? and q.status=? and p.lastname<>?";
+												WHERE q.employee_id=? and q.status=? GROUP BY c.complaint_id order by q.datetime_queue DESC;";
 									//$sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, c.patient_condition, c.chief_complaint, c.history, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender, p.address from tbl_queue as q LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id WHERE q.employee_id=? and q.status=?";
 									//$ScheduleOutput
 									$output = '';
 
 									$result = $db->prepare($sql);
-									$result->execute(array($_SESSION['employee_id'], 'Pending', ""));
+									$result->execute(array($_SESSION['employee_id'], 'Pending'));
 									$j = 0;
 									for ($i = 0; $row = $result->fetch(); $i++) {
 										$j = $i + 1;
@@ -133,7 +133,7 @@
 														<td><textarea class="form-control" style="height:100px;"></textarea></td>
 														
 													   <td><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#patient_history">Details</button>
-													  <td><button class="btn btn-success btn-sm" class="btn btn-sm btn-success" data-toggle="modal" data-target="#prescriptionss" onClick="getPrescInfo(&#39;' . $row[1] . '&#39;,&#39;' . $row[5] . '&#39;,&#39;' . $row[6] . '&#39;,&#39;' . $row[7] . '&#39;,&#39;' . $fullname . '&#39;,&#39;' . $license . '&#39;,&#39;' . $ptr . '&#39;)">Add</button></td>
+											<button class="btn btn-primary btn-sm" class="btn btn-sm btn-success" data-toggle="modal" data-target="#prescriptionss" onClick="getPrescInfo(&#39;' . $row[1] . '&#39;,&#39;' . $row[5] . '&#39;,&#39;' . $row[6] . '&#39;,&#39;' . $row[7] . '&#39;,&#39;' . $fullname . '&#39;,&#39;' . $license . '&#39;,&#39;' . $ptr . '&#39;)">Add</button></td>
 															</tr>';
 
 									}

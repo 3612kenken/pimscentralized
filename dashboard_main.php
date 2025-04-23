@@ -258,13 +258,13 @@ if (isset($_SESSION['ID'])) {
     from tbl_queue as q 
     LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id 
     LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id 
-    WHERE q.employee_id=? and q.status=? and p.lastname<>?";
+    WHERE q.employee_id=? and q.status=? GROUP BY c.complaint_id order by q.datetime_queue DESC;";
                                                     //$sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, c.patient_condition, c.chief_complaint, c.history, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender, p.address from tbl_queue as q LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id WHERE q.employee_id=? and q.status=?";
 //$ScheduleOutput
                                                     $output = '';
 
                                                     $result = $db->prepare($sql);
-                                                    $result->execute(array($_SESSION['employee_id'], 'Pending', ""));
+                                                    $result->execute(array($_SESSION['employee_id'], 'Pending'));
 
 
 

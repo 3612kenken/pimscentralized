@@ -2,51 +2,41 @@
 
 ## License: unknown
 
-https://github.com/dsblox/pim/tree/dc5c77f03008bc217fb275be898d54edd043c922/client/index.html
+https://github.com/alexromo/apryl-asistencias/tree/383b19b9fc642826d35f5a7becfb620ae4f886ae/cch/php/rondines/imprimeDetalleRondin.php
 
 ```
-.css">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://
-```
-
-## License: unknown
-
-https://github.com/thanapol2/thanapol2.github.io/tree/ca9e06997aef64393222285e3da6d4680b6ab19d/upload-result.html
-
-```
->
-<link rel="stylesheet" href="assets/vendors/apexcharts/apexcharts.css">
-<link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-<link rel="stylesheet" href
+td>
+                    <td>' . $row[1] . '</td>
+                    <td>' . $row[2] . '</td>
+                    <td>' . $row[3] . '</td>
+                    <td>' .
 ```
 
 ## License: unknown
 
-https://github.com/huynhat98/FE_32/tree/1ef1718921ec8465f115594e51e82bbf6355dcf3/Buoi_3__HTML5_CSS3/BaiTapKBB/HTML5_NewShop/FE32_NguyenHoNhatHuy/NewShop/index.html
+https://github.com/jessicaathalia/OOP_PHP/tree/15e7cd81b9af4b4b7d799a215b11dca44f512600/admin/home2.php
 
 ```
-/all.min.css">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="
-```
-
-## License: MIT
-
-https://github.com/zuramai/voler/tree/9a0b583dd3aac300e63659d6b6d4be0d9ecc591b/src/layouts/master.html
-
-```
-<link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-<link rel="stylesheet" href="assets/css/app.css">
-<link rel="shortcut icon" href="
+. $row[1] . '</td>
+                    <td>' . $row[2] . '</td>
+                    <td>' . $row[3] . '</td>
+                    <td>' . $row[4] .
 ```
 
 ## License: unknown
 
-https://github.com/aseongen/20.10_FlowerPot_Project/tree/5285b478bc66eb34d1068e84aa02171265d91da9/flowerPot/src/main/webapp/WEB-INF/views/semiadmin/not%20use/table-datatable.html
+https://github.com/nguyenphuongnam211202/A0922I1_Nguy-n-Ph-ng-Ho-i-Nam/tree/723af7118aa3a765eec1a667c949ee02c23cfbe3/module%203/practice/src/main/webapp/view/list.jsp
 
 ```
-link rel="stylesheet" href="assets/css/bootstrap.css">
-<link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
-<link rel="stylesheet" href="assets/vendors/
+"stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+   <script src="https://cdn.datatables.net/1.13.4/js
+```
+
+## License: unknown
+
+https://github.com/1nitss/PERSCENT-ETR/tree/e40ff4c2fb82ae33c3b84a8fd26d1452cdf1afef/PerScent_ETR/resources/views/admin/add-product.blade.php
+
+```
+rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+   <script src="https://cdn.datatables.net/1.13.4
 ```
