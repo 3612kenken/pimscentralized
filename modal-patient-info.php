@@ -127,13 +127,13 @@
                             </div>
                             <h3 class="text-center">History of Patient</h3>
                             <div class="table-responsive">
-                                <table class='table mb-0' id="complaint_table">
+                                <table class='table mb-0' id="complaintTable">
                                     <thead class="bg-info text-white">
                                         <tr>
                                             <th>#</th>
-                                            <th>Date </th>
-                                            <th>Condition </th>
-                                            <th>Chief Complaint </th>
+                                            <th>Date</th>
+                                            <th>Condition</th>
+                                            <th>Chief Complaint</th>
                                             <th>History/Physical Examination</th>
                                             <th>Diagnosis/Treatment</th>
                                             <th>Previous Doctor</th>
@@ -224,12 +224,12 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class='table mb-0' id="laboratory_table">
+                            <table class='table mb-0' id="laboratoryTable">
                                 <thead class="bg-info text-white">
                                     <tr>
                                         <th>#</th>
-                                        <th>Date </th>
-                                        <th>Test </th>
+                                        <th>Date</th>
+                                        <th>Test</th>
                                         <th>Results</th>
                                         <th>Unit</th>
                                         <th>Normal Value</th>
@@ -306,7 +306,7 @@
                             </div>
                             <h3 class="text-center">Vital Signs History</h3>
                             <div class="table-responsive">
-                                <table class='table mb-0' id="vital_signs_table">
+                                <table class='table mb-0' id="vitalSignsTable">
                                     <thead class="bg-success text-white">
                                         <tr>
                                             <th>#</th>
@@ -431,3 +431,6 @@
         </div>
     </div>
 </div>
+<script>
+
+</script>

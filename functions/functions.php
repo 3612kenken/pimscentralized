@@ -566,7 +566,31 @@ class functions
 			echo 'Failed to log user action.';
 		}
 	}
+
+	public function AddDoctorSchedule($employee_id, $date_from, $date_to, $time_from, $time_to, $room)
+	{
+		$ds_id = sha1("schedule" . date("Y-m-d H:i:s") . $employee_id); // Generate unique ID
+		$sql = 'INSERT INTO tbl_doctor_sched (ds_id, employee_id, date_from, date_to, time_from, time_to, room) VALUES (?, ?, ?, ?, ?, ?, ?)';
+
+		$db = new PDODatabase();
+		$rset = $db->prepare($sql);
+
+		$rset->execute(array(
+			$ds_id,
+			$employee_id,
+			$date_from,
+			$date_to,
+			$time_from,
+			$time_to,
+			$room
+		));
+
+		echo 'Doctor Schedule Added Successfully';
+	}
 }
+
+// Initialize $msg to avoid undefined variable warning
+$msg = "";
 
 $functions = new functions();
 
@@ -787,6 +811,17 @@ if (isset($_POST['log_action'])) {
 		$_POST['user_id'],
 		$_POST['action_made'],
 		$_POST['status']
+	);
+}
+
+if (isset($_POST['add_schedule'])) {
+	$msg = $functions->AddDoctorSchedule(
+		$_POST['employee_id'],
+		$_POST['date_from'],
+		$_POST['date_to'],
+		$_POST['time_from'],
+		$_POST['time_to'],
+		$_POST['room']
 	);
 }
 

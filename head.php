@@ -64,4 +64,8 @@ for ($i = 0; $row = $result->fetch(); $i++) {
 	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 	<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
 
+
+
+
+
 </head>

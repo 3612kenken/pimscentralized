@@ -54,6 +54,7 @@
 	<title>Prescription</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
 </head>
 
 <body>
@@ -82,6 +83,40 @@
 		<h2 style="text-align:left;"> <?php echo $_GET['fullname']; ?></h2>
 		<h3 style="text-align:left;">LICENSE NO: <?php echo $_GET['license']; ?></h3>
 		<h3 style="text-align:left;">PTR.: <?php echo $_GET['ptr']; ?></h3>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped" id="prescriptionTable">
+			<thead class="bg-primary text-white">
+				<tr>
+					<th>#</th>
+					<th>Prescription</th>
+					<th>Doctor</th>
+					<th>Date</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				$sql = "SELECT * FROM tbl_prescriptions";
+				$result = $db->prepare($sql);
+				$result->execute();
+				$j = 0;
+				while ($row = $result->fetch()) {
+					$j++;
+					echo '<tr>
+						<td>' . $j . '</td>
+						<td>' . $row['prescription'] . '</td>
+						<td>' . $row['doctor'] . '</td>
+						<td>' . $row['date'] . '</td>
+						<td>
+							<button class="btn badge bg-primary">Edit</button>
+							<button class="btn badge bg-danger">Delete</button>
+						</td>
+					</tr>';
+				}
+				?>
+			</tbody>
+		</table>
 	</div>
 	<script>
 		const canvas = document.querySelector('#canvas');
@@ -130,6 +165,18 @@
 
 		// Initialize on load
 		resizeCanvas();
+
+		// Initialize DataTable
+		document.addEventListener('DOMContentLoaded', function () {
+			const prescriptionTable = document.querySelector('#prescriptionTable');
+			if (prescriptionTable) {
+				new simpleDatatables.DataTable(prescriptionTable, {
+					searchable: true,
+					fixedHeight: true,
+					perPage: 10
+				});
+			}
+		});
 	</script>
 </body>
 

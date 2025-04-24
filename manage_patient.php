@@ -234,9 +234,7 @@
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h4 class="card-title">List of Patents</h4>
                                     <div class="d-flex ">
-
-
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-3" style="display: none;">
                                             <span class="input-group-text" id="basic-addon1"><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -268,7 +266,7 @@
                                 </div>
                                 <div class="card-body px-0 pb-0">
                                     <div class="table-responsive">
-                                        <table class='table table-striped' id="table1">
+                                        <table class='table table-striped' id="patientTable">
                                             <thead class="bg-primary text-white">
                                                 <tr>
                                                     <th>#</th>
@@ -284,7 +282,7 @@
                                             </thead>
                                             <tbody id="table-patient">
                                                 <?php
-                                                $sql = "Select * from tbl_patient_info";
+                                                $sql = "SELECT * FROM tbl_patient_info";
                                                 $output = '';
 
                                                 $result = $db->prepare($sql);
@@ -292,23 +290,21 @@
                                                 $j = 0;
                                                 for ($i = 0; $row = $result->fetch(); $i++) {
                                                     $j = $i + 1;
-                                                    $output .= '<tr><td>' . $j . '</td>
-															<td>' . $row[1] . '</td>
-								
-															<td>' . $row[2] . '</td>
-															<td>' . $row[3] . '</td>
-
-															<td>' . $row[4] . '</td>
-															<td>
-															<button class="btn badge bg-danger" onclick="ModalComplaint(&#39;' . $row[0] . '&#39;)">Patient health records</button>
-                                            </td>
-											<td>None</td>
-											<td>
-                                            <button class="btn badge bg-primary"> <i class="fa fa-edit"></i></button>
-                                            <button class="btn badge bg-danger" onclick="DeleteData(&#39;' . $row[0] . '&#39;, &#39;59be36566f9cc3a098a0f15fb61a49653dc902c1&#39;,3);"> <i class="fa fa-trash"></i></button>
-                                        </td>
-															</tr>';
-
+                                                    $output .= '<tr>
+                                                        <td>' . $j . '</td>
+                                                        <td>' . $row[1] . '</td>
+                                                        <td>' . $row[2] . '</td>
+                                                        <td>' . $row[3] . '</td>
+                                                        <td>' . $row[4] . '</td>
+                                                        <td>
+                                                            <button class="btn badge bg-danger" onclick="ModalComplaint(&#39;' . $row[0] . '&#39;)">Patient health records</button>
+                                                        </td>
+                                                        <td>None</td>
+                                                        <td>
+                                                            <button class="btn badge bg-primary"> <i class="fa fa-edit"></i></button>
+                                                            <button class="btn badge bg-danger" onclick="DeleteData(&#39;' . $row[0] . '&#39;, &#39;59be36566f9cc3a098a0f15fb61a49653dc902c1&#39;,3);"> <i class="fa fa-trash"></i></button>
+                                                        </td>
+                                                    </tr>';
                                                 }
                                                 echo $output;
                                                 ?>
@@ -318,6 +314,48 @@
                                         </table>
                                     </div>
                                 </div>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        // Initialize Simple-DataTables
+                                        const patientTable = document.querySelector('#patientTable');
+                                        if (patientTable) {
+                                            new simpleDatatables.DataTable(patientTable, {
+                                                searchable: true,
+                                                fixedHeight: true,
+                                                perPage: 10
+                                            });
+                                        }
+                                    });
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        // Initialize Simple-DataTables for each table
+                                        const complaintTable = document.querySelector('#complaintTable');
+                                        if (complaintTable) {
+                                            new simpleDatatables.DataTable(complaintTable, {
+                                                searchable: true,
+                                                fixedHeight: true,
+                                                perPage: 10
+                                            });
+                                        }
+
+                                        const laboratoryTable = document.querySelector('#laboratoryTable');
+                                        if (laboratoryTable) {
+                                            new simpleDatatables.DataTable(laboratoryTable, {
+                                                searchable: true,
+                                                fixedHeight: true,
+                                                perPage: 10
+                                            });
+                                        }
+
+                                        const vitalSignsTable = document.querySelector('#vitalSignsTable');
+                                        if (vitalSignsTable) {
+                                            new simpleDatatables.DataTable(vitalSignsTable, {
+                                                searchable: true,
+                                                fixedHeight: true,
+                                                perPage: 10
+                                            });
+                                        }
+                                    });
+                                </script>
                             </div>
                         </div>
 
