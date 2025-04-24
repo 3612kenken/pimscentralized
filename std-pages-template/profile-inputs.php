@@ -110,53 +110,6 @@
   ?>
 </div>
 
-<div class="table-responsive">
-  <table class="table table-striped" id="profileInputsTable">
-    <thead class="bg-primary text-white">
-      <tr>
-        <th>#</th>
-        <th>Input Name</th>
-        <th>Input Type</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      $sql = "SELECT * FROM tbl_profile_inputs";
-      $result = $db->prepare($sql);
-      $result->execute();
-      $j = 0;
-      while ($row = $result->fetch()) {
-        $j++;
-        echo '<tr>
-                    <td>' . $j . '</td>
-                    <td>' . $row['input_name'] . '</td>
-                    <td>' . $row['input_type'] . '</td>
-                    <td>
-                        <button class="btn badge bg-primary">Edit</button>
-                        <button class="btn badge bg-danger">Delete</button>
-                    </td>
-                </tr>';
-      }
-      ?>
-    </tbody>
-  </table>
-</div>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const profileInputsTable = document.querySelector('#profileInputsTable');
-    if (profileInputsTable) {
-      new simpleDatatables.DataTable(profileInputsTable, {
-        searchable: true,
-        fixedHeight: true,
-        perPage: 10
-      });
-    }
-  });
-</script>
 
-<script>
-
-</script>
 </div>
 </div>

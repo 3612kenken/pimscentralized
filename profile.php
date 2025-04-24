@@ -58,8 +58,8 @@
                         pulicense_num: document.getElementById('license_num') ? document.getElementById('license_num').value : '',
                         puclinic_name: document.getElementById('clinic_name') ? document.getElementById('clinic_name').value : '',
                         puclinic_address: document.getElementById('clinic_address') ? document.getElementById('clinic_address').value : '',
-                        pucontact: document.getElementById('contact') ? document.getElementById('contact').value : '',
-                        puptr: document.getElementById('ptr') ? document.getElementById('ptr').value : ''
+                        puclinic_contact: document.getElementById('contact') ? document.getElementById('contact').value : '',
+                        puclinic_ptr: document.getElementById('ptr') ? document.getElementById('ptr').value : ''
                     };
 
                     $.post('./functions/functions.php', data, function (response) {

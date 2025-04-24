@@ -403,7 +403,10 @@ class functions
 		$clinic_id,
 		$profession,
 		$license_num,
-		$clinic_name
+		$clinic_name,
+		$clinic_address,
+		$clinic_contact,
+		$ptr
 	) {
 		$db = new PDODatabase();
 
@@ -413,15 +416,15 @@ class functions
 		$rset_employee->execute(array($lastname, $firstname, $middle, $designation, $gender, $address, $employee_id));
 
 		// Update user info
-		$sql_user = 'UPDATE tbl_users SET username=?, password=? WHERE employee_id=?';
+		$sql_user = 'UPDATE tbl_users SET user_name=?, password=? WHERE employee_id=?';
 		$password_hashed = sha1($password . "2024");
 		$rset_user = $db->prepare($sql_user);
 		$rset_user->execute(array($username, $password_hashed, $employee_id));
 
 		// Update clinic info
-		$sql_clinic = 'UPDATE tbl_clinic_info SET profession=?, license_num=?, clinic_name=? WHERE clinic_id=?';
+		$sql_clinic = 'UPDATE tbl_clinic_info SET profession=?, license_num=?, clinic_name=?, address=?, contact=?, ptr=? WHERE employee_id=?';
 		$rset_clinic = $db->prepare($sql_clinic);
-		$rset_clinic->execute(array($profession, $license_num, $clinic_name, $clinic_id));
+		$rset_clinic->execute(array($profession, $license_num, $clinic_name, $clinic_address, $clinic_contact, $ptr, $employee_id));
 
 		echo 'Profile Updated Successfully';
 	}
@@ -802,7 +805,10 @@ if (isset($_POST['update_profile'])) {
 		$_POST['puclinic_id'],
 		$_POST['puprofession'],
 		$_POST['pulicense_num'],
-		$_POST['puclinic_name']
+		$_POST['puclinic_name'],
+		$_POST['puclinic_address'] ?? '', // Use null coalescing operator to provide a default value
+		$_POST['puclinic_contact'] ?? '',  // Use null coalescing operator to provide a default value
+		$_POST['puclinic_ptr'] ?? '' // Use null coalescing operator to provide a default value
 	);
 }
 

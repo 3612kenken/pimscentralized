@@ -50,7 +50,14 @@ if (isset($_SESSION['ID'])) {
                                         <div class='px-3 py-3 d-flex justify-content-between'>
                                             <h3 class='card-title'>Pending Patients <br>Today</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>10 </p>
+                                                <?php
+                                                $sql = "SELECT COUNT(*) as pending_count FROM tbl_queue WHERE status = 'Pending' AND DATE(datetime_queue) = CURDATE()";
+                                                $result = $db->prepare($sql);
+                                                $result->execute();
+                                                $row = $result->fetch();
+                                                $pendingCount = $row['pending_count'] ?? 0;
+                                                ?>
+                                                <p><?php echo $pendingCount; ?></p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -67,7 +74,14 @@ if (isset($_SESSION['ID'])) {
                                         <div class='px-3 py-3 d-flex justify-content-between'>
                                             <h3 class='card-title'>Checked-up Patients <br>Today</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>20 </p>
+                                                <?php
+                                                $sql = "SELECT COUNT(*) as chkup_count FROM tbl_queue WHERE status = 'Checked Up' AND DATE(datetime_queue) = CURDATE()";
+                                                $result = $db->prepare($sql);
+                                                $result->execute();
+                                                $row = $result->fetch();
+                                                $chkup_count = $row['chkup_count'] ?? 0;
+                                                ?>
+                                                <p><?php echo $chkup_count; ?></p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -82,9 +96,16 @@ if (isset($_SESSION['ID'])) {
                                 <div class="card-body p-0">
                                     <div class="d-flex flex-column">
                                         <div class='px-3 py-3 d-flex justify-content-between'>
-                                            <h3 class='card-title'>Total Checked-up Patients</h3>
+                                            <h3 class='card-title'>Over-All - Total Checked-up</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>444 </p>
+                                                <?php
+                                                $sql = "SELECT COUNT(*) as chkup_count FROM tbl_queue WHERE status = 'Checked Up'";
+                                                $result = $db->prepare($sql);
+                                                $result->execute();
+                                                $row = $result->fetch();
+                                                $chkup_count = $row['chkup_count'] ?? 0;
+                                                ?>
+                                                <p><?php echo $chkup_count; ?></p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -232,59 +253,149 @@ if (isset($_SESSION['ID'])) {
                                         </div>
                                         <div class="col-md-5">
                                             <div class="row">
-                                                <div class="col-md-8">
-                                                    <h3 class='card-heading p-1 pl-3'>Patient line-up</h3>
+                                                <div class="col-md-12">
+                                                    <ul class="nav nav-tabs" id="patientTabs" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" id="lineup-tab" data-toggle="tab"
+                                                                href="#lineup" role="tab" aria-controls="lineup"
+                                                                aria-selected="true">Patient Line-up</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="checkedup-tab" data-toggle="tab"
+                                                                href="#checkedup" role="tab" aria-controls="checkedup"
+                                                                aria-selected="false">Patient Checked Up</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="otherinfo-tab" data-toggle="tab"
+                                                                href="#otherinfo" role="tab" aria-controls="otherinfo"
+                                                                aria-selected="false">Other Information</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content" id="patientTabsContent">
+                                                        <!-- Patient Line-up Tab -->
+                                                        <div class="tab-pane fade show active" id="lineup"
+                                                            role="tabpanel" aria-labelledby="lineup-tab">
+                                                            <table class="table mb-0" id="table1">
+                                                                <thead>
+                                                                    <tr class="bg-success text-white">
+                                                                        <th>#</th>
+                                                                        <th>Full Name</th>
+                                                                        <th>Complaint</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    $sql = "SELECT q.queue_id, CONCAT(p.firstname, ' ', p.middle, ' ', p.lastname) as fullname, 
+                                                                            c.chief_complaint
+                                                                            FROM tbl_queue as q 
+                                                                            LEFT OUTER JOIN tbl_patient_info as p ON p.patient_id = q.patient_id 
+                                                                            LEFT OUTER JOIN tbl_patient_complaint as c ON p.patient_id = c.patient_id 
+                                                                            WHERE q.employee_id = ? AND q.status = ? 
+                                                                            GROUP BY c.complaint_id 
+                                                                            ORDER BY q.datetime_queue DESC;";
+                                                                    $result = $db->prepare($sql);
+                                                                    $result->execute(array($_SESSION['employee_id'], 'Pending'));
+                                                                    $output = '';
+                                                                    $j = 0;
+                                                                    for ($i = 0; $row = $result->fetch(); $i++) {
+                                                                        $j = $i + 1;
+                                                                        $output .= '<tr><td>' . $j . '</td>
+                                                                                    <td>' . $row[1] . '</td>
+                                                                                    <td>' . $row[2] . '</td>
+                                                                                    <td><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#patient_history">Details</button></td>
+                                                                                    </tr>';
+                                                                    }
+                                                                    echo $output;
+                                                                    ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
 
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <button class="btn btn-info" data-toggle="modal"
-                                                        data-target="#modal_fullscreen">Full Screen </button>
+                                                        <!-- Patient Checked Up Tab -->
+                                                        <div class="tab-pane fade" id="checkedup" role="tabpanel"
+                                                            aria-labelledby="checkedup-tab">
+                                                            <table class="table mb-0" id="table2">
+                                                                <thead>
+                                                                    <tr class="bg-primary text-white">
+                                                                        <th>#</th>
+                                                                        <th>Full Name</th>
+
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    $sql = "SELECT q.queue_id, CONCAT(p.firstname, ' ', p.middle, ' ', p.lastname) as fullname, 
+                                                                            c.chief_complaint, c.diagnosis
+                                                                            FROM tbl_queue as q 
+                                                                            LEFT OUTER JOIN tbl_patient_info as p ON p.patient_id = q.patient_id 
+                                                                            LEFT OUTER JOIN tbl_patient_complaint as c ON p.patient_id = c.patient_id 
+                                                                            WHERE q.employee_id = ? AND q.status = ? 
+                                                                            GROUP BY c.complaint_id 
+                                                                            ORDER BY q.datetime_queue DESC;";
+                                                                    $result = $db->prepare($sql);
+                                                                    $result->execute(array($_SESSION['employee_id'], 'Checked Up'));
+                                                                    $output = '';
+                                                                    $j = 0;
+                                                                    for ($i = 0; $row = $result->fetch(); $i++) {
+                                                                        $j = $i + 1;
+                                                                        $output .= '<tr><td>' . $j . '</td>
+                                                                                    <td>' . $row[1] . '</td>
+                                                                                   
+                                                                                    <td><button class="btn btn-sm btn-danger">Delete</button></td>
+                                                                                    </tr>';
+                                                                    }
+                                                                    echo $output;
+                                                                    ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <!-- Other Information Tab -->
+                                                        <div class="tab-pane fade" id="otherinfo" role="tabpanel"
+                                                            aria-labelledby="otherinfo-tab">
+                                                            <h3 class="card-heading p-1 pl-3">Other Information</h3>
+                                                            <p class="p-3">This tab can be used to display additional
+                                                                information about patients, such as their medical
+                                                                history, allergies, or any other relevant details.</p>
+                                                            <div class="table-responsive">
+                                                                <table class="table mb-0" id="table3">
+                                                                    <thead>
+                                                                        <tr class="bg-warning text-white">
+                                                                            <th>#</th>
+                                                                            <th>Patient Name</th>
+                                                                            <th>Additional Info</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <?php
+                                                                        $sql = "SELECT p.patient_id, CONCAT(p.firstname, ' ', p.middle, ' ', p.lastname) as fullname, p.additional_info
+                                                                                FROM tbl_patient_info as p
+                                                                                WHERE p.additional_info IS NOT NULL
+                                                                                ORDER BY p.lastname ASC;";
+                                                                        $result = $db->prepare($sql);
+                                                                        $result->execute();
+                                                                        $output = '';
+                                                                        $j = 0;
+                                                                        for ($i = 0; $row = $result->fetch(); $i++) {
+                                                                            $j = $i + 1;
+                                                                            $output .= '<tr><td>' . $j . '</td>
+                                                                                        <td>' . $row['fullname'] . '</td>
+                                                                                        <td>' . $row['additional_info'] . '</td>
+                                                                                        <td><button class="btn btn-sm btn-info">View</button></td>
+                                                                                        </tr>';
+                                                                        }
+                                                                        echo $output;
+                                                                        ?>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <table class="table mb-0" id="table1">
-                                                <thead>
-                                                    <tr class="bg-success text-white">
-                                                        <th>#</th>
-                                                        <th>Full Name</th>
-                                                        <th>Complaint</th>
-                                                        <th>Action</th>
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    $sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, 
-    c.chief_complaint
-    from tbl_queue as q 
-    LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id 
-    LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id 
-    WHERE q.employee_id=? and q.status=? GROUP BY c.complaint_id order by q.datetime_queue DESC;";
-                                                    //$sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, c.patient_condition, c.chief_complaint, c.history, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender, p.address from tbl_queue as q LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id WHERE q.employee_id=? and q.status=?";
-//$ScheduleOutput
-                                                    $output = '';
-
-                                                    $result = $db->prepare($sql);
-                                                    $result->execute(array($_SESSION['employee_id'], 'Pending'));
-
-
-
-                                                    $j = 0;
-                                                    for ($i = 0; $row = $result->fetch(); $i++) {
-                                                        $j = $i + 1;
-                                                        $output .= '<tr><td>' . $j . '</td>
-															<td>' . $row[1] . '</td>
-															<td>' . $row[2] . '</td>
-														   <td><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#patient_history">Details</button></td>
-															</tr>';
-
-                                                    }
-                                                    echo $output;
-                                                    $j = 0;
-                                                    ?>
-
-
-                                                </tbody>
-                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -304,9 +415,28 @@ if (isset($_SESSION['ID'])) {
             <script src="assets/js/pages/ui-apexchart.js"></script>
 
             <script>
+                <?php
+                // SQL queries to count patient statuses
+                $sql_pending = "SELECT COUNT(*) as pending_count FROM tbl_patient_complaint WHERE patient_status = 'Pending'";
+                $sql_checked_up = "SELECT COUNT(*) as checked_up_count FROM tbl_patient_complaint WHERE patient_status = 'Checked Up'";
+                $sql_not_checked_up = "SELECT COUNT(*) as not_checked_up_count FROM tbl_patient_complaint WHERE patient_status = 'Not Checked Up'";
+
+                // Execute queries
+                $result_pending = $db->prepare($sql_pending);
+                $result_pending->execute();
+                $pending_count = $result_pending->fetch()['pending_count'] ?? 0;
+
+                $result_checked_up = $db->prepare($sql_checked_up);
+                $result_checked_up->execute();
+                $checked_up_count = $result_checked_up->fetch()['checked_up_count'] ?? 0;
+
+                $result_not_checked_up = $db->prepare($sql_not_checked_up);
+                $result_not_checked_up->execute();
+                $not_checked_up_count = $result_not_checked_up->fetch()['not_checked_up_count'] ?? 0;
+                ?>
 
                 var options = {
-                    series: [90, 6, 3],
+                    series: [<?php echo $checked_up_count; ?>, <?php echo $pending_count; ?>, <?php echo $not_checked_up_count; ?>],
                     chart: {
                         height: 350,
                         type: 'radialBar',
@@ -324,14 +454,13 @@ if (isset($_SESSION['ID'])) {
                                     show: true,
                                     label: 'Total Patients',
                                     formatter: function (w) {
-                                        // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                                        return 467
+                                        return <?php echo $checked_up_count + $pending_count + $not_checked_up_count; ?>;
                                     }
                                 }
                             }
                         }
                     },
-                    labels: ['Serviced', 'Pending Patients', 'Not serviced'],
+                    labels: ['Checked Up', 'Pending Patients', 'Total Patients'],
                 };
 
                 var chart = new ApexCharts(document.querySelector("#doctor"), options);

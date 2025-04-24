@@ -32,7 +32,7 @@
                     <td>' . $row[5] . '</td>
                     <td>' . $row[3] . '</td>
                     <td>
-                        <a href="#" class="btn btn-danger btn-sm" onclick="DeleteData(&#39;' . $row[0] . '&#39;, &#39;idlog&#39;, 0);">Delete</a>
+                        <a href="#" class="btn btn-danger btn-sm" onclick="DeleteLog(&#39;' . $row[0] . '&#39;);">Delete</a>
                     </td>
                 </tr>';
 			}
@@ -44,6 +44,26 @@
 </div>
 
 <script>
+	function DeleteLog(logId) {
+		if (confirm("Are you sure you want to delete this log?")) {
+			// Check if functions.php exists before making the request
+			$.get("./functions/functions.php")
+				.done(function () {
+					$.post("./functions/functions.php", { del_id: logId, del_indx: '171758c3f04b8aa77ea6892b5c4647492d271ab8' })
+						.done(function (response) {
+							alert(response);
+							location.reload(); // Reload the page to reflect changes
+						})
+						.fail(function () {
+							alert("Failed to delete the log. Please try again.");
+						});
+				})
+				.fail(function () {
+					alert("Error: functions.php is missing or inaccessible.");
+				});
+		}
+	}
+
 	$(document).ready(function () {
 		$('#logTable').DataTable({
 			"paging": true,

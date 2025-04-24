@@ -1,3 +1,7 @@
+<?php
+// Include the connection file where PDODatabase is defined
+include('../connection.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,40 +88,7 @@
 		<h3 style="text-align:left;">LICENSE NO: <?php echo $_GET['license']; ?></h3>
 		<h3 style="text-align:left;">PTR.: <?php echo $_GET['ptr']; ?></h3>
 	</div>
-	<div class="table-responsive">
-		<table class="table table-striped" id="prescriptionTable">
-			<thead class="bg-primary text-white">
-				<tr>
-					<th>#</th>
-					<th>Prescription</th>
-					<th>Doctor</th>
-					<th>Date</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				$sql = "SELECT * FROM tbl_prescriptions";
-				$result = $db->prepare($sql);
-				$result->execute();
-				$j = 0;
-				while ($row = $result->fetch()) {
-					$j++;
-					echo '<tr>
-						<td>' . $j . '</td>
-						<td>' . $row['prescription'] . '</td>
-						<td>' . $row['doctor'] . '</td>
-						<td>' . $row['date'] . '</td>
-						<td>
-							<button class="btn badge bg-primary">Edit</button>
-							<button class="btn badge bg-danger">Delete</button>
-						</td>
-					</tr>';
-				}
-				?>
-			</tbody>
-		</table>
-	</div>
+
 	<script>
 		const canvas = document.querySelector('#canvas');
 		const ctx = canvas.getContext('2d');

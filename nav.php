@@ -51,6 +51,10 @@
                 <a href="doctors-sched.php" class="sidebar-link">
                     <i data-feather="layout" width="20"></i> 
                     <span>Doctors Schedule</span>
+                </a>
+                <a href="./api/patient_data.php" class="sidebar-link">
+                    <i data-feather="layout" width="20"></i> 
+                    <span>API Patient Info</span>
                 </a>';
                 }
 

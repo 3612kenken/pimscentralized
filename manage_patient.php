@@ -302,7 +302,9 @@
                                                         <td>None</td>
                                                         <td>
                                                             <button class="btn badge bg-primary"> <i class="fa fa-edit"></i></button>
-                                                            <button class="btn badge bg-danger" onclick="DeleteData(&#39;' . $row[0] . '&#39;, &#39;59be36566f9cc3a098a0f15fb61a49653dc902c1&#39;,3);"> <i class="fa fa-trash"></i></button>
+                                                            <span class="btn badge bg-danger" onclick="DeleteData(&#39;' . $row[0] . '&#39;, &#39;59be36566f9cc3a098a0f15fb61a49653dc902c1&#39;);"> 
+                                                                <i class="fa fa-trash"></i>
+                                                            </span>
                                                         </td>
                                                     </tr>';
                                                 }
@@ -315,6 +317,18 @@
                                     </div>
                                 </div>
                                 <script>
+                                    function DeleteData(del_id, del_indx) {
+                                        //if (confirm("Are you sure you want to delete this patient record?")) {
+                                        $.post("./functions/functions.php", { del_id: del_id, del_indx: del_indx })
+                                            .done(function (response) {
+                                                alert(response);
+                                                // location.reload(); // Reload the page to reflect changes
+                                            })
+                                            .fail(function () {
+                                                alert("Failed to delete the record. Please try again.");
+                                            });
+                                        // }
+                                    }
                                     document.addEventListener('DOMContentLoaded', function () {
                                         // Initialize Simple-DataTables
                                         const patientTable = document.querySelector('#patientTable');
@@ -355,6 +369,8 @@
                                             });
                                         }
                                     });
+
+
                                 </script>
                             </div>
                         </div>
