@@ -102,6 +102,7 @@ function SaveBasicInfo() {
         })
         .done(function(data) {
             alert(data);
+            location.reload();
             clearFormInputs('#app'); // Clear form inputs after successful save
         });
     }
