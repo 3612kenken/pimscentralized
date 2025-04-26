@@ -43,9 +43,16 @@ if (isset($_SESSION['ID'])) {
                 <div class="card-body p-0">
                   <div class="d-flex flex-column">
                     <div class='px-3 py-3 d-flex justify-content-between'>
-                      <h3 class='card-title'>Pending Patients<br>Today</h3>
+                      <h3 class='card-title'>Pending Patients</h3>
                       <div class="card-right d-flex align-items-center">
-                        <p>10 </p>
+                        <?php
+                        $sql = "SELECT COUNT(*) as pending_count FROM tbl_patient_complaint WHERE patient_status = 'Pending'";
+                        $result = $db->prepare($sql);
+                        $result->execute();
+                        $row = $result->fetch();
+                        $pendingCount = $row['pending_count'] ?? 0;
+                        ?>
+                        <p><?php echo $pendingCount; ?> </p>
                       </div>
                     </div>
                     <div class="chart-wrapper">
@@ -60,9 +67,16 @@ if (isset($_SESSION['ID'])) {
                 <div class="card-body p-0">
                   <div class="d-flex flex-column">
                     <div class='px-3 py-3 d-flex justify-content-between'>
-                      <h3 class='card-title'>Checked-up Patients<br>Today</h3>
+                      <h3 class='card-title'>Checked-up Patients</h3>
                       <div class="card-right d-flex align-items-center">
-                        <p>20 </p>
+                        <?php
+                        $sql = "SELECT COUNT(*) as chkup_count FROM tbl_patient_complaint WHERE patient_status = 'Checked Up'";
+                        $result = $db->prepare($sql);
+                        $result->execute();
+                        $row = $result->fetch();
+                        $chkup_count = $row['chkup_count'] ?? 0;
+                        ?>
+                        <p><?php echo $chkup_count; ?></p>
                       </div>
                     </div>
                     <div class="chart-wrapper">
@@ -77,9 +91,16 @@ if (isset($_SESSION['ID'])) {
                 <div class="card-body p-0">
                   <div class="d-flex flex-column">
                     <div class='px-3 py-3 d-flex justify-content-between'>
-                      <h3 class='card-title'>Total Checked-up Patients</h3>
+                      <h3 class='card-title'>Total Patients</h3>
                       <div class="card-right d-flex align-items-center">
-                        <p>444 </p>
+                        <?php
+                        $sql = "SELECT COUNT(*) as count FROM tbl_patient_complaint";
+                        $result = $db->prepare($sql);
+                        $result->execute();
+                        $row = $result->fetch();
+                        $Count = $row['count'] ?? 0;
+                        ?>
+                        <p><?php echo $Count; ?></p>
                       </div>
                     </div>
                     <div class="chart-wrapper">
@@ -231,12 +252,47 @@ if (isset($_SESSION['ID'])) {
 
           //exit;
         }
+
+        $sql = "SELECT COUNT(*) as cnt,  nhs.disease as disease
+FROM tbl_patient_complaint as p 
+LEFT OUTER JOIN tbl_nhs_disease as nhs ON p.nhsid=nhs.nhsid GROUP BY nhs.nhsid;";
+
+        $result = $db->prepare($sql);
+        $result->execute(array());
+        $data = array();
+        $categories = array();
+        $count_patient = array();
+        $disease_patient = array();
+
+        for ($i = 0; $row = $result->fetch(); $i++) {
+          array_push($count_patient, $row[0]);
+          array_push($disease_patient, $row[1]);
+
+        }
+
+        //   SELECT count(p.date_time_entry) as month_count, m.month_abbr from tbl_patient_complaint as p RIGHT JOIN tbl_months as m on m.month_name = MONTHNAME(p.date_time_entry) GROUP BY m.month_abbr; 
+        $sql = " SELECT count(p.date_time_entry) as month_count, m.month_abbr from tbl_patient_complaint as p RIGHT JOIN tbl_months as m on m.month_name = MONTHNAME(p.date_time_entry) GROUP BY m.month_abbr; ";
+
+
+        $result = $db->prepare($sql);
+        $result->execute(array());
+        $data = array();
+        $categories = array();
+        $month_count = array();
+        $month_abbr = array();
+
+        for ($i = 0; $row = $result->fetch(); $i++) {
+          array_push($month_count, $row[0]);
+          array_push($month_abbr, $row[1]);
+
+        }
+
         ?>
 
         var options = {
           series: [{
             name: "Patients",
-            data: [400, 430, 448, 470, 540, 580, 690]
+            data: <?php echo json_encode($count_patient); ?>
           }],
           chart: {
             type: 'bar',
@@ -252,7 +308,7 @@ if (isset($_SESSION['ID'])) {
             enabled: true
           },
           xaxis: {
-            categories: ['Bladder Stones', 'Amputation', 'Bleeding after the menopause, see Postmenopausal bleeding', 'Bleeding between periods or after sex, see Vaginal bleeding between periods or after sex', 'Diabetes insipidus', 'Endometrial cancer, see Womb (uterus) cancer', 'Endoscopy'],
+            categories: <?php echo json_encode($disease_patient); ?>,
           },
           grid: {
             xaxis: {
@@ -275,11 +331,10 @@ if (isset($_SESSION['ID'])) {
 
 
 
-
         var options = {
           series: [{
             name: "Patients",
-            data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 200, 20, 30]
+            data: <?php echo json_encode($month_count); ?>
           }],
           chart: {
             height: 350,
@@ -302,16 +357,41 @@ if (isset($_SESSION['ID'])) {
             },
           },
           xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            categories: <?php echo json_encode($month_abbr); ?>
           }
         };
 
         var chart = new ApexCharts(document.querySelector("#complaints"), options);
         chart.render();
 
+        <?php
+        //   SELECT count(p.date_time_entry) as month_count, m.month_abbr from tbl_patient_complaint as p RIGHT JOIN tbl_months as m on m.month_name = MONTHNAME(p.date_time_entry) GROUP BY m.month_abbr; 
+        $sql = " SELECT count(c.employee_id) as total_patient, d.lastname, d.firstname, d.middle, d.designation 
+     FROM `tbl_patient_complaint` as c 
+     LEFT OUTER JOIN tbl_emp_and_doctor as d on c.employee_id = d.employee_id 
+     GROUP BY c.employee_id";
 
+        $result = $db->prepare($sql);
+        $result->execute(array());
+        $data = array();
+        $categories = array();
+        $count_patient = array();
+        $doctor = array();
+        $total_doc = 0;
+
+        for ($i = 0; $row = $result->fetch(); $i++) {
+          array_push($count_patient, $row[0]);
+          array_push($doctor, 'Dr. ' . $row[1] . ', ' . $row[2] . ' ' . $row[3]);
+          $total_doc += 1;
+
+
+        }
+
+
+        ?>
         var options = {
-          series: [10, 41, 35, 51],
+          series: <?php echo json_encode($count_patient); ?>,
+
           chart: {
             height: 350,
             type: 'radialBar',
@@ -324,19 +404,25 @@ if (isset($_SESSION['ID'])) {
                 },
                 value: {
                   fontSize: '16px',
+                  formatter: function (val) {
+                    return parseInt(val)
+
+
+                  }
                 },
                 total: {
                   show: true,
-                  label: 'Patients',
+                  label: 'Total Doctors',
                   formatter: function (w) {
                     // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                    return 249
+                    return <?php echo $total_doc; ?>
+
                   }
                 }
               }
             }
           },
-          labels: ['Dr. K. Omiping', 'Dr. A. Macayaon', 'Dr. M. Nebreja', 'Dr. E. Magahis'],
+          labels: <?php echo json_encode($doctor); ?>
         };
 
         var chart = new ApexCharts(document.querySelector("#doctors"), options);

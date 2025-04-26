@@ -221,6 +221,10 @@ class functions
 			$rset = $db->prepare($sql);
 			$rset->execute(array($del_id));
 
+			$sql = 'DELETE FROM tbl_queue WHERE patient_id =?';
+			$rset = $db->prepare($sql);
+			$rset->execute(array($del_id));
+
 		} elseif ($del_indx == '171758c3f04b8aa77ea6892b5c4647492d271ab8') {
 			$tbl_name = "users_log";
 			$id_name = "log_id";

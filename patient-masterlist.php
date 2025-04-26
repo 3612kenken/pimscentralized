@@ -56,26 +56,26 @@
 										<div class="table-responsive">
 											<table class="table table-bordered table-md">
 
-												<thead>
-													<th>#</th>
-													<th>Patient Name</th>
-													<th>Patient Condition</th>
-													<th>Patient History</th>
-													<th>Address</th>
-													<th>Contact Number</th>
-													<th>Birth Date</th>
-													<th>Age</th>
-													<th>NHS</th>
-												</thead>
+												<th>
+												<th>#</th>
+												<th>Patient Name</th>
+												<th>Patient Condition</th>
+												<th>Patient History</th>
+												<th>Address</th>
+												<th>Contact Number</th>
+												<th>Date COMPLAINT</th>
+												<th>Age</th>
+												<th>NHS</th>
+												</th>
 
 												<tbody>
 													<?php
 													/*
-																																																																																																																																																																			   
-																																																																																																																																																																			   - Summary based NHS with filter day + (barangay, municipality, provincial)
-																																																																																																																																																																			   - 
-																																																																																																																																																																			   
-																																																																																																																																																																			   */
+																																																																																																																																																																																																																																																																															
+																																																																																																																																																																																																																																																																															- Summary based NHS with filter day + (barangay, municipality, provincial)
+																																																																																																																																																																																																																																																																															- 
+																																																																																																																																																																																																																																																																															
+																																																																																																																																																																																																																																																																															*/
 													$sql = "Select CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, CONCAT(p.street,' ', p.barangay,' ', p.municipality,' ', p.province) as Address, c.patient_condition, c.history, nhs.disease, c.diagnosis, c.date_complaint, p.phone, p.birth, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender,  COUNT(*) as total_patient from tbl_patient_info as p LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id LEFT OUTER JOIN tbl_nhs_disease as nhs on nhs.nhsid = c.nhsid GROUP BY c.nhsid, fullname ORDER BY fullname;";
 													$result = $db->prepare($sql);
 													$result->execute(array());
@@ -93,10 +93,11 @@
 								<td>' . $row[0] . '</td>
 								<td>' . $row[2] . '</td>
 								<td>' . $row[3] . '</td>
-								<td>' . $row[1] . '</td>
+								<td>' . $row[5] . '</td>
 								
+								<td>' . $row[1] . '</td>
 								<td>' . $row[7] . '</td>
-								<td>' . $row[8] . '</td>
+								<td>' . $row[6] . '</td>
 								<td>' . $row[9] . '</td>
 								<td>' . $row[4] . '</td>
 								</tr>';

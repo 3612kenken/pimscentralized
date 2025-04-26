@@ -51,7 +51,7 @@ if (isset($_SESSION['ID'])) {
                                             <h3 class='card-title'>Pending Patients <br>Today</h3>
                                             <div class="card-right d-flex align-items-center">
                                                 <?php
-                                                $sql = "SELECT COUNT(*) as pending_count FROM tbl_queue WHERE status = 'Pending' AND DATE(datetime_queue) = CURDATE()";
+                                                $sql = "SELECT COUNT(*) as pending_count FROM tbl_patient_complaint WHERE patient_status = 'Pending' AND DATE(date_time_entry) = CURDATE()";
                                                 $result = $db->prepare($sql);
                                                 $result->execute();
                                                 $row = $result->fetch();
@@ -75,7 +75,7 @@ if (isset($_SESSION['ID'])) {
                                             <h3 class='card-title'>Checked-up Patients <br>Today</h3>
                                             <div class="card-right d-flex align-items-center">
                                                 <?php
-                                                $sql = "SELECT COUNT(*) as chkup_count FROM tbl_queue WHERE status = 'Checked Up' AND DATE(datetime_queue) = CURDATE()";
+                                                $sql = "SELECT COUNT(*) as chkup_count  FROM tbl_patient_complaint WHERE patient_status = 'Checked Up' AND DATE(date_time_entry) = CURDATE()";
                                                 $result = $db->prepare($sql);
                                                 $result->execute();
                                                 $row = $result->fetch();
@@ -99,7 +99,7 @@ if (isset($_SESSION['ID'])) {
                                             <h3 class='card-title'>Over-All - Total Checked-up</h3>
                                             <div class="card-right d-flex align-items-center">
                                                 <?php
-                                                $sql = "SELECT COUNT(*) as chkup_count FROM tbl_queue WHERE status = 'Checked Up'";
+                                                $sql = "SELECT COUNT(*) as chkup_count FROM tbl_patient_complaint WHERE patient_status = 'Checked Up'";
                                                 $result = $db->prepare($sql);
                                                 $result->execute();
                                                 $row = $result->fetch();

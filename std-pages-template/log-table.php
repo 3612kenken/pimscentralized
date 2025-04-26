@@ -45,34 +45,34 @@
 
 <script>
 	function DeleteLog(logId) {
-		if (confirm("Are you sure you want to delete this log?")) {
-			// Check if functions.php exists before making the request
-			$.get("./functions/functions.php")
-				.done(function () {
-					$.post("./functions/functions.php", { del_id: logId, del_indx: '171758c3f04b8aa77ea6892b5c4647492d271ab8' })
-						.done(function (response) {
-							alert(response);
-							location.reload(); // Reload the page to reflect changes
-						})
-						.fail(function () {
-							alert("Failed to delete the log. Please try again.");
-						});
-				})
+		// Check if functions.php exists before making the request
+		$.get("./functions/functions.php")
+			.done(function () {)
+		$.post("./functions/functions.php", { del_id: logId, del_indx: '171758c3f04b8aa77ea6892b5c4647492d271ab8' })
+			.done(function (response) {
+				alert(response);
+				location.reload(); // Reload the page to reflect changes
+			})
+			.fail(function () {
+				alert("Failed to delete the log. Please try again.");
+			});
+	})
 				.fail(function () {
-					alert("Error: functions.php is missing or inaccessible.");
-				});
-		}
+		alert("Error: functions.php is missing or inaccessible.");
+	});
 	}
 
 	$(document).ready(function () {
-		$('#logTable').DataTable({
-			"paging": true,
-			"lengthChange": true,
-			"searching": true,
-			"ordering": true,
-			"info": true,
-			"autoWidth": false,
-			"responsive": true
-		});
+		if (!$.fn.DataTable.isDataTable('#logTable')) {
+			$('#logTable').DataTable({
+				"paging": true,
+				"lengthChange": true,
+				"searching": true,
+				"ordering": true,
+				"info": true,
+				"autoWidth": false,
+				"responsive": true
+			});
+		}
 	});
 </script>
