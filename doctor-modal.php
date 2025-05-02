@@ -30,7 +30,7 @@
 
 
 
-							$sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, c.patient_condition, c.chief_complaint, c.history, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender, CONCAT(p.street,' ', p.barangay,' ', p.municipality,' ', p.province) as Address from tbl_queue as q LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id WHERE q.employee_id=? and q.status=? GROUP BY c.complaint_id order by q.datetime_queue DESC;";
+							$sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, c.patient_condition, c.chief_complaint, c.history, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender, CONCAT(p.street,' ', p.barangay,' ', p.municipality,' ', p.province) as Address, c.complaint_id from tbl_queue as q LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id WHERE q.employee_id=? and q.status=? GROUP BY c.complaint_id order by q.datetime_queue DESC;";
 							//$sql = "Select q.queue_id, CONCAT(p.firstname ,' ' , p.middle, ' ', p.lastname) as fullname, c.patient_condition, c.chief_complaint, c.history, TIMESTAMPDIFF(YEAR, p.birth, CURDATE()) AS age, p.gender, p.address from tbl_queue as q LEFT OUTER JOIN tbl_patient_info as p on p.patient_id=q.patient_id LEFT OUTER JOIN tbl_patient_complaint as c on p.patient_id=c.patient_id WHERE q.employee_id=? and q.status=?";
 							//$ScheduleOutput
 							$output = '';
@@ -45,10 +45,9 @@
 															<td>' . $row[2] . '</td>
 															<td>' . $row[3] . '</td>
 															<td>' . $row[4] . '</td>
-															<td><textarea class="form-control" style="height:100px;"></textarea></td>
-															
-														   <td><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#patient_history">Details</button>
-														   <a class="btn btn-sm btn-primary" href="./prescriptions/presc.php?pname=' . $row[1] . '&page=' . $row[5] . '&pgender=' . $row[6] . '&paddr=' . $row[7] . '&fullname=' . $fullname . '&license=' . $license . '&ptr=' . $ptr . '" target="blank">Quick Prescription</a></td>
+															<td><textarea class="form-control" style="height:100px;" id="diag_id' . $j . '"></textarea></td>
+														   <td>
+														   <button class="btn btn-sm btn-primary" onclick="openQuickPrescription(\'' . $row[1] . '\', \'' . $row[5] . '\', \'' . $row[6] . '\', \'' . $row[7] . '\', \'' . $fullname . '\', \'' . $license . '\', \'' . $ptr . '\', \'' . $row[8] . '\',\'' . $j . '\')">Quick Prescription</button></td>
 															</tr>';
 
 							}
@@ -132,7 +131,7 @@
 														<td>' . $row[4] . '</td>
 														<td><textarea class="form-control" style="height:100px;"></textarea></td>
 														
-													   <td><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#patient_history">Details</button>
+													   <td><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#patient_full_details">Full Details</button>
 											<button class="btn btn-primary btn-sm" class="btn btn-sm btn-success" data-toggle="modal" data-target="#prescriptionss" onClick="getPrescInfo(&#39;' . $row[1] . '&#39;,&#39;' . $row[5] . '&#39;,&#39;' . $row[6] . '&#39;,&#39;' . $row[7] . '&#39;,&#39;' . $fullname . '&#39;,&#39;' . $license . '&#39;,&#39;' . $ptr . '&#39;)">Add</button></td>
 															</tr>';
 
@@ -285,3 +284,10 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function openQuickPrescription(pname, page, pgender, paddr, fullname, license, ptr, comp_id, $indx_id) {
+		const url = `./prescriptions/presc.php?pname=${encodeURIComponent(pname)}&page=${encodeURIComponent(page)}&pgender=${encodeURIComponent(pgender)}&paddr=${encodeURIComponent(paddr)}&fullname=${encodeURIComponent(fullname)}&license=${encodeURIComponent(license)}&ptr=${encodeURIComponent(ptr)}&comp_id=${encodeURIComponent(comp_id)}&diagnosis=${encodeURIComponent(document.getElementById('diag_id' + $indx_id).value)}`;
+		window.open(url, '_blank');
+	}
+</script>

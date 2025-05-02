@@ -594,6 +594,23 @@ class functions
 
 		echo 'Doctor Schedule Added Successfully';
 	}
+
+	public function UpdateComplaintStatus($complaint_id, $new_status, $diagnosis)
+	{
+		$db = new PDODatabase();
+
+		// Update tbl_patient_complaint
+		$sql_complaint = "UPDATE tbl_patient_complaint SET patient_status = ?, diagnosis = ? WHERE complaint_id = ?";
+		$stmt_complaint = $db->prepare($sql_complaint);
+		$stmt_complaint->execute(array($new_status, $diagnosis, $complaint_id));
+
+		// Update tbl_queue
+		$sql_queue = "UPDATE tbl_queue SET status = ? WHERE complaint_id = ?";
+		$stmt_queue = $db->prepare($sql_queue);
+		$stmt_queue->execute(array($new_status, $complaint_id));
+
+		echo "Status Updated Successfully";
+	}
 }
 
 // Initialize $msg to avoid undefined variable warning
@@ -833,6 +850,14 @@ if (isset($_POST['add_schedule'])) {
 		$_POST['time_to'],
 		$_POST['room']
 	);
+}
+
+if (isset($_POST['action']) && $_POST['action'] === 'update_complaint_status') {
+	$complaint_id = $_POST['complaint_id'];
+	$new_status = $_POST['new_status'];
+	$diagnosis = $_POST['diagnosis'];
+
+	$functions->UpdateComplaintStatus($complaint_id, $new_status, $diagnosis);
 }
 
 echo $msg;

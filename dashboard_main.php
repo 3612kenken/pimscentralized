@@ -280,7 +280,7 @@ if (isset($_SESSION['ID'])) {
                                                             LEFT OUTER JOIN tbl_patient_info as p ON p.patient_id = q.patient_id 
                                                             LEFT OUTER JOIN tbl_patient_complaint as c ON p.patient_id = c.patient_id 
                                                             WHERE q.employee_id = ? AND q.status = ? 
-                                                            GROUP BY c.complaint_id 
+                                                            GROUP BY q.queue_id
                                                             ORDER BY q.datetime_queue DESC;";
                                                     $result = $db->prepare($sql);
                                                     $result->execute(array($_SESSION['employee_id'], 'Pending'));
@@ -317,7 +317,7 @@ if (isset($_SESSION['ID'])) {
                                                             LEFT OUTER JOIN tbl_patient_info as p ON p.patient_id = q.patient_id 
                                                             LEFT OUTER JOIN tbl_patient_complaint as c ON p.patient_id = c.patient_id 
                                                             WHERE q.employee_id = ? AND q.status = ? 
-                                                            GROUP BY c.complaint_id 
+                                                            GROUP BY q.queue_id
                                                             ORDER BY q.datetime_queue DESC;";
                                                     $result = $db->prepare($sql);
                                                     $result->execute(array($_SESSION['employee_id'], 'Checked Up'));
@@ -327,7 +327,7 @@ if (isset($_SESSION['ID'])) {
                                                         $j = $i + 1;
                                                         $output .= '<tr><td>' . $j . '</td>
                                                                     <td>' . $row[1] . '</td>
-                                                                    <td><button class="btn btn-sm btn-primary">View</button></td>
+                                                                    <td><button class="btn btn-sm btn-info">Info</button> <button class="btn btn-sm btn-danger">Delete</button></td>
                                                                     </tr>';
                                                     }
                                                     echo $output;
@@ -355,9 +355,9 @@ if (isset($_SESSION['ID'])) {
             <script>
                 <?php
                 // SQL queries to count patient statuses
-                $sql_pending = "SELECT COUNT(*) as pending_count FROM tbl_patient_complaint WHERE patient_status = 'Pending'";
-                $sql_checked_up = "SELECT COUNT(*) as checked_up_count FROM tbl_patient_complaint WHERE patient_status = 'Checked Up'";
-                $sql_not_checked_up = "SELECT COUNT(*) as not_checked_up_count FROM tbl_patient_complaint WHERE patient_status = 'Not Checked Up'";
+                $sql_pending = "SELECT COUNT(*) as pending_count FROM tbl_patient_complaint WHERE patient_status = 'Pending' AND employee_id ='" . $_SESSION['employee_id'] . "' ";
+                $sql_checked_up = "SELECT COUNT(*) as checked_up_count FROM tbl_patient_complaint WHERE patient_status = 'Checked Up' AND employee_id ='" . $_SESSION['employee_id'] . "' ";
+                $sql_not_checked_up = "SELECT COUNT(*) as not_checked_up_count FROM tbl_patient_complaint WHERE patient_status = 'Not Checked Up' AND employee_id ='" . $_SESSION['employee_id'] . "' ";
 
                 // Execute queries
                 $result_pending = $db->prepare($sql_pending);

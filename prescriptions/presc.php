@@ -15,6 +15,7 @@ include('../connection.php');
 
 		body {
 			text-align: center;
+			background-color: white;
 		}
 
 		h1,
@@ -59,6 +60,9 @@ include('../connection.php');
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+	<!-- Add this script before your JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+
 </head>
 
 <body>
@@ -69,6 +73,7 @@ include('../connection.php');
 
 	<br />
 	<button id="save">Print</button>
+	<button id="savethis" onclick="savePrintAsImage()">Save</button>
 	<h3 style="font-size:20px;margin:10px;">Patient: <?php echo $_GET['pname']; ?></h3>
 
 	<label style="font-size:20px;margin:10px;">Age: <?php echo $_GET['page']; ?></label>
@@ -77,7 +82,8 @@ include('../connection.php');
 
 	<br>
 	<label style="font-size:20px;">Address: <?php echo $_GET['paddr']; ?></label>
-
+	<input type="hidden" id="complaint_id" value="<?php echo $_GET['comp_id']; ?>">
+	<input type="hidden" id="id_diagnosis" value="<?php echo $_GET['diagnosis']; ?>">
 	<hr>
 	<h1 style="text-align:left;font-size:70px">Rx</h1>
 	<div id="canvas-container">
@@ -90,26 +96,74 @@ include('../connection.php');
 	</div>
 
 	<script>
+		function UpdateComplaintStatus() {
+			const complaint_id = $('#complaint_id').val();
+			const new_status = "Checked Up"; // Define the new status
+			const diagnosis = $('#id_diagnosis').val();
+
+			// Update the status via AJAX
+			$.post('../functions/functions.php', { action: 'update_complaint_status', complaint_id: complaint_id, new_status: new_status, diagnosis: diagnosis })
+				.done(function (response) {
+					console.log(response); // Log the response for debugging
+				});
+		}
+		function savePrintAsImage() {
+			UpdateComplaintStatus();
+
+			const $element = $('#savethis');
+			const $element2 = $('#save');
+
+			$element.hide();
+			$element2.hide();
+			domtoimage.toJpeg(document.documentElement, {
+				quality: 0.8,
+				width: document.documentElement.scrollWidth,
+				height: document.documentElement.scrollHeight
+			}).then(function (dataUrl) {
+				const link = document.createElement('a');
+				link.download = 'fullpage.jpg';
+				link.href = dataUrl;
+				link.click();
+			})
+				.catch(console.error)
+				.finally(() => {
+					$element.show();
+					$element2.show();
+				});
+		}
+
 		const canvas = document.querySelector('#canvas');
 		const ctx = canvas.getContext('2d');
 
-		// Resize canvas to match screen width
 		function resizeCanvas() {
-			canvas.width = window.innerWidth; // Set canvas width to screen width
+			canvas.width = window.innerWidth;
 			ctx.fillStyle = 'white';
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
 		}
 
-		// Print the page without showing the scroll bar
 		function printPage() {
+			const $element = $('#savethis');
+			const $element2 = $('#save');
+
+			$element.hide();
+			$element2.hide();
+			window.onbeforeprint = function () {
+				document.title = "custom-filename";
+
+			};
+
+			setTimeout(() => {
+				$element.show();
+				$element2.show();
+			}, 1000);
 			window.print();
+
+
 		}
 
-		// Event listeners
-		window.addEventListener('resize', resizeCanvas); // Adjust canvas on window resize
+		window.addEventListener('resize', resizeCanvas);
 		document.querySelector('#save').addEventListener('click', printPage);
 
-		// Drawing functionality
 		let isDrawing = false;
 		let lastX = 0;
 		let lastY = 0;
