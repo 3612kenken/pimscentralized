@@ -212,6 +212,7 @@ class functions
 	{
 		$tbl_name = "";
 		$id_name = "";
+		//1rwwtwtc3f04b8aa77ea6892b5c4647492d271ab8
 		/*																																																										*/
 		$db = new PDODatabase();
 		if ($del_indx == '59be36566f9cc3a098a0f15fb61a49653dc902c1') {
@@ -240,6 +241,9 @@ class functions
 		} elseif ($del_indx == 'idvital') {
 			$tbl_name = "tbl_vital_signs";
 			$id_name = "vital_id";
+		}elseif ($del_indx == '1rwwtwtc3f04b8aa77ea6892b5c4647492d271ab8') {
+			$tbl_name = "tbl_doctor_sched";
+			$id_name = "ds_id";
 		}
 
 		$sql = 'DELETE FROM ' . $tbl_name . ' WHERE ' . $id_name . ' =?';

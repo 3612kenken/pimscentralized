@@ -34,7 +34,7 @@
 										$db = new PDODatabase;
 
 										$caddress = "";
-										$sql = "SELECT d.*, c.* FROM tbl_emp_and_doctor as d LEFT OUTER JOIN tbl_clinic_info as c on c.employee_id = d.employee_id where d.designation=?";
+										$sql = "SELECT d.*, c.* FROM tbl_emp_and_doctor as d LEFT OUTER JOIN tbl_clinic_info as c on c.employee_id = d.employee_id where c.profession=?";
 										//$ScheduleOutput
 										
 										$j = 0;
@@ -42,7 +42,7 @@
 										$result->execute(array("Doctor"));
 										for ($i = 0; $row = $result->fetch(); $i++) {
 											$j = $i + 1;
-											echo "<tr><td><input type='hidden' id='" . $j . "prof' value='" . $row[9] . "'><input type='hidden' id='" . $j . "fn' value='" . $row[2] . " " . $row[3] . " " . $row[1] . "'>" . $j . "</td><td>" . $row[2] . " " . $row[3] . " " . $row[1] . "</td>
+											echo "<tr><td><input type='hidden' id='" . $row[0]  . "prof' value='" . $row[9] . "'><input type='hidden' id='" . $row[0] . "fn' value='" . $row[2] . " " . $row[3] . " " . $row[1] . "'>" . $j . "</td><td>" . $row[2] . " " . $row[3] . " " . $row[1] . "</td>
 									<td>" . $row[9] . "</td>
 									<td><button class='btn btn-primary btn-sm' href='' onclick='setSchedule(" . $row[0] . ");'>Schedule</button></td></tr>";
 										}
@@ -115,7 +115,7 @@
 									</thead>
 									<tbody id="table-schedule">
 										<?php
-										$sql = 'SELECT d.*, c.*, s.* FROM tbl_emp_and_doctor as d LEFT OUTER JOIN tbl_doctor_sched as s ON d.employee_id = s.employee_id LEFT OUTER JOIN tbl_clinic_info as c on c.employee_id = d.employee_id WHERE d.designation ="Doctor"';
+										$sql = 'SELECT d.*, c.*, s.* FROM tbl_emp_and_doctor as d LEFT OUTER JOIN tbl_doctor_sched as s ON d.employee_id = s.employee_id LEFT OUTER JOIN tbl_clinic_info as c on c.employee_id = d.employee_id WHERE  c.profession ="Doctor"';
 										$result = $db->prepare($sql);
 										$result->execute();
 										$j = 0;
@@ -162,7 +162,6 @@
 					$('#lblfullname').html($("#" + id + "fn").val());
 					lID = id;
 
-
 				}
 
 				function saveDoctorSchedule() {
@@ -199,13 +198,21 @@
 				}
 
 				function DeleteSchedule(scheduleId) {
-					if (confirm("Are you sure you want to delete this schedule?")) {
-						$.post("./functions/functions.php", { delete_schedule_id: scheduleId })
-							.done(function (data) {
-								alert(data);
-								location.reload(); // Reload the page to reflect changes
-							});
-					}
+					    // Check if functions.php exists before making the request
+					$.get("./functions/functions.php")
+						.done(function () {
+							$.post("./functions/functions.php", { del_id: scheduleId, del_indx: '1rwwtwtc3f04b8aa77ea6892b5c4647492d271ab8' })
+								.done(function (response) {
+									alert(response);
+									location.reload(); // Reload the page to reflect changes
+								})
+								.fail(function () {
+									alert("Failed to delete the schedule. Please try again.");
+								});
+						})
+						.fail(function () {
+							alert("Error: functions.php is missing or inaccessible.");
+						});
 				}
 
 				document.addEventListener('DOMContentLoaded', function () {
@@ -219,6 +226,8 @@
 						});
 					}
 				});
+				//lblfullname
+				//lblprof
 			</script>
 </body>
 

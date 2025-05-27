@@ -40,7 +40,7 @@
                             <div class="form-group position-relative has-icon-left">
                                 <div class="clearfix">
                                     <label for="password">Password</label>
-                                    <a href="auth-forgot-password.html" class='float-right'>
+                                    <a href="auth-forgot-password.html" class='float-right' style="display:none;">
                                         <small>Forgot password?</small>
                                     </a>
                                 </div>
@@ -57,9 +57,7 @@
                                     <input type="checkbox" id="checkbox1" class='form-check-input'>
                                     <label for="checkbox1">Remember me</label>
                                 </div>
-                                <div class="float-right">
-                                    <a href="auth-register.html">Don't have an account?</a>
-                                </div>
+                              
                             </div>
                             <div class="clearfix">
                                 <a class="btn btn-primary float-right" onclick="Auth()">Submit</a>

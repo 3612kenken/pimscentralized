@@ -29,7 +29,7 @@
                     <td>' . $j . '</td>
                     <td class="font-weight-600">' . $row[1] . '</td>
                     <td>' . $row[2] . '</td>
-                    <td>' . $row[5] . '</td>
+                    <td>' . $row['fullname'] . '</td>
                     <td>' . $row[3] . '</td>
                     <td>
                         <a href="#" class="btn btn-danger btn-sm" onclick="DeleteLog(&#39;' . $row[0] . '&#39;);">Delete</a>
@@ -45,22 +45,22 @@
 
 <script>
 	function DeleteLog(logId) {
-		// Check if functions.php exists before making the request
-		$.get("./functions/functions.php")
-			.done(function () {)
-		$.post("./functions/functions.php", { del_id: logId, del_indx: '171758c3f04b8aa77ea6892b5c4647492d271ab8' })
-			.done(function (response) {
-				alert(response);
-				location.reload(); // Reload the page to reflect changes
-			})
-			.fail(function () {
-				alert("Failed to delete the log. Please try again.");
-			});
-	})
-				.fail(function () {
-		alert("Error: functions.php is missing or inaccessible.");
-	});
-	}
+    // Check if functions.php exists before making the request
+    $.get("./functions/functions.php")
+        .done(function () {
+            $.post("./functions/functions.php", { del_id: logId, del_indx: '171758c3f04b8aa77ea6892b5c4647492d271ab8' })
+                .done(function (response) {
+                    alert(response);
+                    location.reload(); // Reload the page to reflect changes
+                })
+                .fail(function () {
+                    alert("Failed to delete the log. Please try again.");
+                });
+        })
+        .fail(function () {
+            alert("Error: functions.php is missing or inaccessible.");
+        });
+}
 
 	$(document).ready(function () {
 		if (!$.fn.DataTable.isDataTable('#logTable')) {
