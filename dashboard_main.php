@@ -305,19 +305,19 @@ if (isset($_SESSION['ID'])) {
                                                     <tr class="bg-primary text-white">
                                                         <th>#</th>
                                                         <th>Full Name</th>
-
+<th>TOtal Checked-up</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
                                                     $sql = "SELECT q.queue_id, CONCAT(p.firstname, ' ', p.middle, ' ', p.lastname) as fullname, 
-                                                            c.chief_complaint, c.diagnosis
+                                                            count(p.patient_id), p.patient_id, c.complaint_id, c.chief_complaint, c.diagnosis
                                                             FROM tbl_queue as q 
                                                             LEFT OUTER JOIN tbl_patient_info as p ON p.patient_id = q.patient_id 
                                                             LEFT OUTER JOIN tbl_patient_complaint as c ON p.patient_id = c.patient_id 
                                                             WHERE q.employee_id = ? AND q.status = ? 
-                                                            GROUP BY q.queue_id
+                                                            GROUP BY p.patient_id
                                                             ORDER BY q.datetime_queue DESC;";
                                                     $result = $db->prepare($sql);
                                                     $result->execute(array($_SESSION['employee_id'], 'Checked Up'));
@@ -327,7 +327,10 @@ if (isset($_SESSION['ID'])) {
                                                         $j = $i + 1;
                                                         $output .= '<tr><td>' . $j . '</td>
                                                                     <td>' . $row[1] . '</td>
-                                                                    <td><button class="btn btn-sm btn-info">Info</button> <button class="btn btn-sm btn-danger">Delete</button></td>
+                                                                    
+                                                                    <td>' . $row[3] . '</td>
+                                                                    <td><button class="btn btn-sm btn-info"
+    onclick="showCheckupInfoModal(&#39;' . $row[4] . '&#39;)">Checkup Info</button></td>
                                                                     </tr>';
                                                     }
                                                     echo $output;
@@ -343,6 +346,31 @@ if (isset($_SESSION['ID'])) {
                     </div>
                 </section>
             </div>
+            <?php include("footer.php"); ?>
+
+            <!-- Checkup Info Modal -->
+            <div class="modal fade" id="checkupInfoModal" tabindex="-1" role="dialog" aria-labelledby="checkupInfoModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="checkupInfoModalLabel">Checkup Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <h4>Prescription</h4>
+    <img class="border-gray" width="100%" src="https://cdn-icons-png.flaticon.com/128/149/149071.png" id='prescriptionImage'
+      alt="..." >
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Checkup Info Modal -->
+
             <script src="assets/calendar/js/jquery.min.js"></script>
             <script src="assets/calendar/js/popper.js"></script>
             <script src="assets/calendar/js/main.js"></script>
@@ -425,6 +453,12 @@ if (isset($_SESSION['ID'])) {
                     fullname = sfullname;
                     license = slicense;
                     ptr = sptr;
+                }
+
+                function showCheckupInfoModal(cid) {
+                    var output = document.getElementById('prescriptionImage');
+                    output.src = "./assets/images/prescription/" + cid + ".jpg";
+                    $('#checkupInfoModal').modal('show');
                 }
             </script>
 </body>

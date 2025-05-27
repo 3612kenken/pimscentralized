@@ -144,7 +144,7 @@
                                     <tbody id="patient_history_table">
                                         <?php
                                         $output = "";
-                                        $sql = "SELECT p.*, d.disease, CONCAT('Dr. ', doc.firstname,' ', doc.middle, ' ', doc.lastname) as Doctors FROM tbl_patient_complaint as p LEFT OUTER JOIN tbl_nhs_disease as d on p.nhsid = d.nhsid LEFT OUTER JOIN tbl_emp_and_doctor as doc on doc.employee_id = p.employee_id;";
+                                        $sql = "SELECT p.*, d.disease, CONCAT('Dr. ', doc.firstname,' ', doc.middle, ' ', doc.lastname) as Doctors, p.complaint_id FROM tbl_patient_complaint as p LEFT OUTER JOIN tbl_nhs_disease as d on p.nhsid = d.nhsid LEFT OUTER JOIN tbl_emp_and_doctor as doc on doc.employee_id = p.employee_id;";
 
                                         $result = $db->prepare($sql);
                                         $result->execute(array());
@@ -157,7 +157,7 @@
 															<td>' . $row[4] . '</td>
 															<td>' . $row[6] . '</td>
 															<td>' . $row[13] . '</td>
-															<td><button class="btn btn-primary btn-sm">Show</button></td></tr>';
+															<td><button class="btn btn-primary btn-sm" onClick="showCheckupInfoModal(&#39;'.$row[15].'&#39;)">Show</button></td></tr>';
                                         }
                                         echo $output;
                                         ?>
@@ -428,6 +428,31 @@
                     <span class="d-none d-sm-block">Close</span>
                 </button>
             </div>
+
+            
+                                     <!-- Checkup Info Modal -->
+            <div class="modal fade" id="checkupInfoModal" tabindex="-1" role="dialog" aria-labelledby="checkupInfoModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="checkupInfoModalLabel">Checkup Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <h4>Prescription</h4>
+    <img class="border-gray" width="100%" src="https://cdn-icons-png.flaticon.com/128/149/149071.png" id='prescriptionImage'
+      alt="..." >
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Checkup Info Modal -->
+
         </div>
     </div>
 </div>

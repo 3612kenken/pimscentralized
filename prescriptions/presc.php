@@ -121,9 +121,25 @@ include('../connection.php');
 				height: document.documentElement.scrollHeight
 			}).then(function (dataUrl) {
 				const link = document.createElement('a');
-				link.download = 'fullpage.jpg';
+				link.download = '<?php echo $_GET['comp_id']; ?>.jpg';
 				link.href = dataUrl;
 				link.click();
+
+				// Send to server
+				$.ajax({
+					type: "POST",
+					url: "../assets/images/prescription/save_prescription_image.php",
+					data: {
+						image: dataUrl,
+						filename: "<?php echo $_GET['comp_id']; ?>.jpg"
+					},
+					success: function(response) {
+						console.log("Saved to server:", response);
+					},
+					error: function(xhr, status, error) {
+						console.error("Error saving to server:", error);
+					}
+				});
 			})
 				.catch(console.error)
 				.finally(() => {

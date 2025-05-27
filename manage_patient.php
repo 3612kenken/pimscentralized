@@ -384,6 +384,11 @@
             ?>
 
             <script>
+                  function showCheckupInfoModal(cid) {
+                    var output = document.getElementById('prescriptionImage');
+                    output.src = "./assets/images/prescription/" + cid + ".jpg";
+                    $('#checkupInfoModal').modal('show');
+                }
                 <?php include("manage-patient.js"); ?>
             </script>
 </body>
